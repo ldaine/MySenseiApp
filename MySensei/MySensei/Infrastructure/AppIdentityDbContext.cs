@@ -7,7 +7,7 @@ namespace MySensei.Infrastructure
 {
     public class AppIdentityDbContext : IdentityDbContext<AppUser>
     {
-        public AppIdentityDbContext() : base("IdentityDb") { }
+        public AppIdentityDbContext() : base("MySenseiDb") { }
 
         static AppIdentityDbContext()
         {

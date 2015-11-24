@@ -168,7 +168,7 @@ D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\System.Web.Helpers.xml
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\System.Web.Mvc.xml
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.csprojResolveAssemblyReference.cache
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.UserPropertiesFirstnameLastname.resources
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.csproj.GenerateResource.Cache
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.dll
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.pdb
+D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.201510171414034_UserPropertiesFirstnameLastname.resources
