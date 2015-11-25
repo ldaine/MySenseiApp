@@ -191,6 +191,7 @@
       <DependentUpon>201510171414034_UserPropertiesFirstnameLastname.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AppCourse.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\UserViewModels.cs" />
