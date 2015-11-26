@@ -14,10 +14,15 @@ namespace MySensei.Infrastructure
             Database.SetInitializer<AppIdentityDbContext>(new IdentityDbInit());
         }
 
+        public DbSet<AppCourse> Courses { get; set; }
+        public DbSet<AppSignUp> SignUps { get; set; }
+
         public static AppIdentityDbContext Create()
         {
             return new AppIdentityDbContext();
         }
+
+        
     }
 
     public class IdentityDbInit : NullDatabaseInitializer<AppIdentityDbContext>

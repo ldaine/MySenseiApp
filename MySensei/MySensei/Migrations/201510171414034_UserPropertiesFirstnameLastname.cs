@@ -1,4 +1,4 @@
-// if this is enabled, the system gives error when updating database
+//if this is enabled, the system gives error when updating database
 //namespace MySensei.Migrations
 //{
 //    using System;

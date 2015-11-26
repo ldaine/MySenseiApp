@@ -190,10 +190,15 @@
     <Compile Include="Migrations\201510171414034_UserPropertiesFirstnameLastname.Designer.cs">
       <DependentUpon>201510171414034_UserPropertiesFirstnameLastname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511261012420_UsersCourses.cs" />
+    <Compile Include="Migrations\201511261012420_UsersCourses.Designer.cs">
+      <DependentUpon>201511261012420_UsersCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppCourse.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\AppSignUp.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -219,6 +224,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510171414034_UserPropertiesFirstnameLastname.resx">
       <DependentUpon>201510171414034_UserPropertiesFirstnameLastname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511261012420_UsersCourses.resx">
+      <DependentUpon>201511261012420_UsersCourses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
