@@ -167,12 +167,9 @@ D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\System.Web.Webpages.Razor.xml
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\System.Web.Helpers.xml
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\bin\System.Web.Mvc.xml
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.csproj.GenerateResource.Cache
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.dll
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.pdb
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.201510171414034_UserPropertiesFirstnameLastname.resources
 D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.csprojResolveAssemblyReference.cache
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.UsersCourses.resources
 C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\MySensei\MySensei\bin\roslyn\csc.exe
 C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\MySensei\MySensei\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\MySensei\MySensei\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -235,6 +232,3 @@ C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\My
 C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.Coursecategorys.resources
 C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.Coursecategories.resources
 C:\Users\Balazs\Documents\Visual Studio 2015\Projects\MySenseiApp\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.Coursecategory_test1.resources
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.Coursecategorys.resources
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.Coursecategories.resources
-D:\_myFILES\EDUCATION\BAAA\Cross-Disciplinary\MySenseiApp\MySensei\MySensei\obj\Debug\MySensei.Migrations.Coursecategory_test1.resources

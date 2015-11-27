@@ -191,26 +191,6 @@
     <Compile Include="Infrastructure\AppIdentityDbContext.cs" />
     <Compile Include="Infrastructure\CustomPasswordValidator.cs" />
     <Compile Include="Infrastructure\IdentityHelpers.cs" />
-    <Compile Include="Migrations\201510171414034_UserPropertiesFirstnameLastname.cs" />
-    <Compile Include="Migrations\201510171414034_UserPropertiesFirstnameLastname.Designer.cs">
-      <DependentUpon>201510171414034_UserPropertiesFirstnameLastname.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511261012420_UsersCourses.cs" />
-    <Compile Include="Migrations\201511261012420_UsersCourses.Designer.cs">
-      <DependentUpon>201511261012420_UsersCourses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511270932494_Course-categorys.cs" />
-    <Compile Include="Migrations\201511270932494_Course-categorys.Designer.cs">
-      <DependentUpon>201511270932494_Course-categorys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511270936080_Course-categories.cs" />
-    <Compile Include="Migrations\201511270936080_Course-categories.Designer.cs">
-      <DependentUpon>201511270936080_Course-categories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511270940021_Course-category_test1.cs" />
-    <Compile Include="Migrations\201511270940021_Course-category_test1.Designer.cs">
-      <DependentUpon>201511270940021_Course-category_test1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppCategory.cs" />
     <Compile Include="Models\AppCourse.cs" />
@@ -250,29 +230,13 @@
     <Content Include="Views\CourseStatusAdmin\Details.cshtml" />
     <Content Include="Views\CourseStatusAdmin\Edit.cshtml" />
     <Content Include="Views\CourseStatusAdmin\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510171414034_UserPropertiesFirstnameLastname.resx">
-      <DependentUpon>201510171414034_UserPropertiesFirstnameLastname.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511261012420_UsersCourses.resx">
-      <DependentUpon>201511261012420_UsersCourses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511270932494_Course-categorys.resx">
-      <DependentUpon>201511270932494_Course-categorys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511270936080_Course-categories.resx">
-      <DependentUpon>201511270936080_Course-categories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511270940021_Course-category_test1.resx">
-      <DependentUpon>201511270940021_Course-category_test1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

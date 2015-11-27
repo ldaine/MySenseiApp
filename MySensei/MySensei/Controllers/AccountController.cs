@@ -46,11 +46,65 @@ namespace MySensei.Controllers
                     {
                         IsPersistent = false
                     }, ident);
-                    return Redirect(returnUrl);
+
+                    //return Redirect(returnUrl);
+                    //role based start page
+                    //role Employer go to Employer page
+                    if (UserManager.IsInRole(user.Id, "Teacher"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    //role Admin go to Admin page
+                    else if (UserManager.IsInRole(user.Id, "Administrators"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else
+                    {
+                        //no role
+                        return RedirectToAction("Index", "Home");
+                    }
+
                 }
             }
             ViewBag.returnUrl = returnUrl;
                         return View(details);
+        }
+
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = new AppUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.UserName,
+                    Email = model.Email
+                };
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View(model);
         }
 
 
@@ -74,6 +128,14 @@ namespace MySensei.Controllers
             get
             {
                 return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
             }
         }
     }
