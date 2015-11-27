@@ -1,0 +1,128 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using MySensei.Infrastructure;
+using MySensei.Models;
+
+namespace MySensei.Controllers
+{
+    public class CourseStatusAdminController : Controller
+    {
+        private AppIdentityDbContext db = new AppIdentityDbContext();
+
+        // GET: CourseStatusAdmin
+        public ActionResult Index()
+        {
+            return View(db.AppCourseStatuss.ToList());
+        }
+
+        // GET: CourseStatusAdmin/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
+            if (appCourseStatus == null)
+            {
+                return HttpNotFound();
+            }
+            return View(appCourseStatus);
+        }
+
+        // GET: CourseStatusAdmin/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: CourseStatusAdmin/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,Status")] AppCourseStatus appCourseStatus)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AppCourseStatuss.Add(appCourseStatus);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(appCourseStatus);
+        }
+
+        // GET: CourseStatusAdmin/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
+            if (appCourseStatus == null)
+            {
+                return HttpNotFound();
+            }
+            return View(appCourseStatus);
+        }
+
+        // POST: CourseStatusAdmin/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,Status")] AppCourseStatus appCourseStatus)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(appCourseStatus).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(appCourseStatus);
+        }
+
+        // GET: CourseStatusAdmin/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
+            if (appCourseStatus == null)
+            {
+                return HttpNotFound();
+            }
+            return View(appCourseStatus);
+        }
+
+        // POST: CourseStatusAdmin/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
+            db.AppCourseStatuss.Remove(appCourseStatus);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
