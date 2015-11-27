@@ -1,4 +1,7 @@
 ﻿@model MySensei.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_LoginFront.cshtml";
+}
 @{ ViewBag.Title = "Login";}
 <h2>Log In</h2>
 @Html.ValidationSummary()
@@ -15,4 +18,15 @@
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
     </div>
     <button class="btn btn-primary" type="submit">Log In</button>
+    
 }
+<p><a href="#">Continue as guest</a></p>
+    <nav>
+        <ul>
+            <li><img src="<img src=" ~/img/logo_i_vector_sort.png" alt="MySensei"/></li>        
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+        </ul>
+    </nav>
