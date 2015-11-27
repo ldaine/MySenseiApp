@@ -32,8 +32,21 @@ namespace MySensei.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = new AppUser {FirstName = model.FirstName, LastName = model.LastName, UserName = model.UserName, Email = model.Email };
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                AppUser user = new AppUser {FirstName = model.FirstName,
+                                            LastName = model.LastName,
+                                            UserName = model.UserName,
+                                            Email = model.Email,
+                                            Address = model.Address,
+                                            Zip = model.Zip,
+                                            City = model.City,
+                                            Country = model.Country,
+                                            Avatar = model.Avatar,
+                                            Gender = model.Gender,
+                                            Biography = model.Biography,
+                                            Birthday = model.Birthday,
+                                            PrimaryLanguage = model.PrimaryLanguage,
+                };
+        IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
