@@ -20,7 +20,7 @@ namespace MySensei.Controllers
             return View(GetData("Index"));
         }
 
-        [Authorize(Roles = "Users")]
+        [Authorize(Roles = "Teacher")]
         public ActionResult OtherAction()
         {
             return View("Index", GetData("OtherAction"));
