@@ -5,6 +5,7 @@ using MySensei.Infrastructure;
 using MySensei.Models;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using System;
 
 namespace MySensei.Controllers
 {
@@ -73,9 +74,13 @@ namespace MySensei.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        
         [HttpPost]
-        public async Task<ActionResult> Edit(string id, string firstname, string lastname, string username, string email, string password)
+        public async Task<ActionResult> Edit(string id, string firstname, string lastname, 
+                                            string username, string email, string address,
+                                            string zip, string city, string country, 
+                                            string avatar, string gender, string biography,
+                                            DateTime birthday, string primaryLanguage, string password)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
@@ -83,7 +88,19 @@ namespace MySensei.Controllers
                 user.FirstName = firstname;
                 user.LastName = lastname;
                 user.UserName = username;
+
+                user.Address = address;
+                user.Zip = zip;
+                user.City = city;
+                user.Country = country;
+                user.Avatar = avatar;
+                user.Gender = gender;
+                user.Biography = biography;
+                user.Birthday = birthday;
+                user.PrimaryLanguage = primaryLanguage;
+
                 user.Email = email;
+
                 IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
                 if (!validEmail.Succeeded)
                 {
