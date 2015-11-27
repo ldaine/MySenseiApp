@@ -16,6 +16,9 @@ namespace MySensei.Infrastructure
 
         public DbSet<AppCourse> Courses { get; set; }
         public DbSet<AppSignUp> SignUps { get; set; }
+        public DbSet<AppTag> AppTags { get; set; }
+        public DbSet<AppCategory> AppCategorys { get; set; }
+        public DbSet<AppCourseStatus> AppCourseStatuss { get; set; }
 
         public static AppIdentityDbContext Create()
         {

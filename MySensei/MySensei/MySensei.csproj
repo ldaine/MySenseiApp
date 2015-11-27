@@ -196,9 +196,24 @@
     <Compile Include="Migrations\201511261012420_UsersCourses.Designer.cs">
       <DependentUpon>201511261012420_UsersCourses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511270932494_Course-categorys.cs" />
+    <Compile Include="Migrations\201511270932494_Course-categorys.Designer.cs">
+      <DependentUpon>201511270932494_Course-categorys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511270936080_Course-categories.cs" />
+    <Compile Include="Migrations\201511270936080_Course-categories.Designer.cs">
+      <DependentUpon>201511270936080_Course-categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511270940021_Course-category_test1.cs" />
+    <Compile Include="Migrations\201511270940021_Course-category_test1.Designer.cs">
+      <DependentUpon>201511270940021_Course-category_test1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AppCategory.cs" />
     <Compile Include="Models\AppCourse.cs" />
     <Compile Include="Models\AppRole.cs" />
+    <Compile Include="Models\AppCourseStatus.cs" />
+    <Compile Include="Models\AppTag.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\AppSignUp.cs" />
     <Compile Include="Models\UserViewModels.cs" />
@@ -230,6 +245,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511261012420_UsersCourses.resx">
       <DependentUpon>201511261012420_UsersCourses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511270932494_Course-categorys.resx">
+      <DependentUpon>201511270932494_Course-categorys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511270936080_Course-categories.resx">
+      <DependentUpon>201511270936080_Course-categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511270940021_Course-category_test1.resx">
+      <DependentUpon>201511270940021_Course-category_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
