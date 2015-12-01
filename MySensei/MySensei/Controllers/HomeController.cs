@@ -7,6 +7,11 @@ using MySensei.Infrastructure;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using MySensei.Models;
+using System.Linq;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+using System;
 
 namespace MySensei.Controllers
 {
@@ -15,13 +20,35 @@ namespace MySensei.Controllers
         // GET: Home
         private AppIdentityDbContext db = new AppIdentityDbContext();
         [Authorize]
-        public ActionResult Index()
+        public ViewResult Index(string searchString)
         {
+            var courses = from c in db.Courses select c;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+
+                courses = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()));
+                //var course = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()) || c => c.Description.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+
             //  List<AppCourse> something = db.Database.SqlQuery<AppCourse>("select headline from dbo.AppCourses").ToList();
 
-            return View(db.Courses);
+            return View(courses);
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppCourse appCourse = db.Courses.Find(id);
+            if (appCourse == null)
+            {
+                return HttpNotFound();
+            }
+            return View(appCourse);
+        }
 
 
         /*      [Authorize(Roles = "Teacher")]

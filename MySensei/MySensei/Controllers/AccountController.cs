@@ -13,6 +13,7 @@ namespace MySensei.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private AppIdentityDbContext db = new AppIdentityDbContext();
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {

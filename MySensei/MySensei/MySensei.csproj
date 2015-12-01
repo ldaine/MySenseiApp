@@ -243,6 +243,8 @@
     <Content Include="Views\CourseStatusAdmin\Edit.cshtml" />
     <Content Include="Views\CourseStatusAdmin\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_CoursesView.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

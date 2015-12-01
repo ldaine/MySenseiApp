@@ -3,10 +3,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Welcome, @User.Identity.Name !</h2>
+<h3>Welcome, @User.Identity.Name !</h3>
 @foreach (var obj in Model)
 {
-    <div style="width: 300px; display: inline-block; border: 1px solid black; padding: 10px;">
+    <div style="width: 300px; height: 250px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px;">
         <h3>@obj.Headline</h3>
         <ul>
             <li>Description: @obj.Description</li>
@@ -14,10 +14,16 @@
             <li>Price: @obj.Price dkk</li>
             <li>Maximum attendance: @obj.MaxAttendance</li>
         </ul>
+        @Html.ActionLink("Details", "Details", new { id = obj.ID })
     </div>
 }
 
 
 @Html.ActionLink("Sign Out ", "Logout", "Account", null, new { @class = "btn btn-primary" })
 
+@using (Html.BeginForm())
+{
+    <p>Find by title: @Html.TextBox("searchString")
+    <input type="submit" value="Search" /></p>
+}
 
