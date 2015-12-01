@@ -52,7 +52,7 @@ namespace MySensei.Controllers
                     //role Employer go to Employer page
                     if (UserManager.IsInRole(user.Id, "Teacher"))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Teachers/CourseTeacher");
                     }
                     //role Admin go to Admin page
                     else if (UserManager.IsInRole(user.Id, "Administrators"))
