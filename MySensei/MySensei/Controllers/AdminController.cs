@@ -13,11 +13,34 @@ namespace MySensei.Controllers
     [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
+        /*  private AppIdentityDbContext db = new AppIdentityDbContext();
+          public ActionResult Index(string sortOrder)
+          {
+              ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+              ViewBag.DateSortParm = sortOrder == "Email" ? "email_desc" : "Email";
+              var userss = from s in db.Database.SqlQuery<AppUser>("select * from dbo.AppUser") select s;
+              switch (sortOrder)
+              {
+                  case "name_desc":
+                      userss = userss.OrderByDescending(s => s.UserName);
+                      break;
+                  case "Email":
+                      userss = userss.OrderBy(s => s.Email);
+                      break;
+                  case "email_desc":
+                      userss = userss.OrderByDescending(s => s.Email);
+                      break;
+                  default:
+                      userss = userss.OrderBy(s => s.UserName);
+                      break;
+              }
+              return View(UserManager.Users);
+          }  */
+
         public ActionResult Index()
         {
             return View(UserManager.Users);
         }
-
 
 
         public ActionResult Create()
@@ -33,21 +56,23 @@ namespace MySensei.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = new AppUser {FirstName = model.FirstName,
-                                            LastName = model.LastName,
-                                            UserName = model.UserName,
-                                            Email = model.Email,
-                                            Address = model.Address,
-                                            Zip = model.Zip,
-                                            City = model.City,
-                                            Country = model.Country,
-                                            Avatar = model.Avatar,
-                                            Gender = model.Gender,
-                                            Biography = model.Biography,
-                                            Birthday = model.Birthday,
-                                            PrimaryLanguage = model.PrimaryLanguage,
+                AppUser user = new AppUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    Address = model.Address,
+                    Zip = model.Zip,
+                    City = model.City,
+                    Country = model.Country,
+                    Avatar = model.Avatar,
+                    Gender = model.Gender,
+                    Biography = model.Biography,
+                    Birthday = model.Birthday,
+                    PrimaryLanguage = model.PrimaryLanguage,
                 };
-        IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
@@ -74,11 +99,11 @@ namespace MySensei.Controllers
                 return RedirectToAction("Index");
             }
         }
-        
+
         [HttpPost]
-        public async Task<ActionResult> Edit(string id, string firstname, string lastname, 
+        public async Task<ActionResult> Edit(string id, string firstname, string lastname,
                                             string username, string email, string address,
-                                            string zip, string city, string country, 
+                                            string zip, string city, string country,
                                             string avatar, string gender, string biography,
                                             DateTime birthday, string primaryLanguage, string password)
         {
