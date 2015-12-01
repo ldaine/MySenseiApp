@@ -1,4 +1,4 @@
-﻿@model List<MySensei.Models.AppCourse>
+﻿@model IEnumerable<MySensei.Models.AppCourse>
 @{
     ViewBag.Title = "Index";
 }
@@ -6,7 +6,15 @@
 <h2>Welcome, @User.Identity.Name !</h2>
 @foreach (var obj in Model)
 {
-    <p>Name: @obj.Headline</p>
+    <div style="width: 300px; display: inline-block; border: 1px solid black; padding: 10px;">
+        <h3>@obj.Headline</h3>
+        <ul>
+    <li>Description: @obj.Description</li>
+    <li>Location: @obj.Location</li>
+    <li>Price: @obj.Price dkk</li>
+    <li>Maximum attendance: @obj.MaxAttendance</li>
+            </ul>
+        </div>
 }
 
 

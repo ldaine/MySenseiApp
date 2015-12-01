@@ -17,10 +17,8 @@ namespace MySensei.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            List<AppCourse> ObjCourse = new List<AppCourse>();
-            AppCourse Obj = new AppCourse();
-            Obj.Headline = "Something";
-            ObjCourse.Add(Obj);
+          //  List<AppCourse> something = db.Database.SqlQuery<AppCourse>("select headline from dbo.AppCourses").ToList();
+
             return View(db.Courses);
         }
 

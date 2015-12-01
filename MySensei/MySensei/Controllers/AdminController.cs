@@ -13,11 +13,34 @@ namespace MySensei.Controllers
     [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
+      /*  private AppIdentityDbContext db = new AppIdentityDbContext();
+        public ActionResult Index(string sortOrder)
+        {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Email" ? "email_desc" : "Email";
+            var userss = from s in db.Database.SqlQuery<AppUser>("select * from dbo.AppUser") select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    userss = userss.OrderByDescending(s => s.UserName);
+                    break;
+                case "Email":
+                    userss = userss.OrderBy(s => s.Email);
+                    break;
+                case "email_desc":
+                    userss = userss.OrderByDescending(s => s.Email);
+                    break;
+                default:
+                    userss = userss.OrderBy(s => s.UserName);
+                    break;
+            }
+            return View(UserManager.Users);
+        }  */
+
         public ActionResult Index()
         {
             return View(UserManager.Users);
         }
-
 
 
         public ActionResult Create()
