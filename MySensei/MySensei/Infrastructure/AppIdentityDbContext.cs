@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using MySensei.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections;
 
 namespace MySensei.Infrastructure
 {
@@ -19,6 +20,7 @@ namespace MySensei.Infrastructure
         public DbSet<AppTag> AppTags { get; set; }
         public DbSet<AppCategory> AppCategorys { get; set; }
         public DbSet<AppCourseStatus> AppCourseStatuss { get; set; }
+        public IEnumerable AppUsers { get; internal set; }
 
         public static AppIdentityDbContext Create()
         {

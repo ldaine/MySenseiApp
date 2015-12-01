@@ -154,6 +154,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Teachers\Views\web.config" />
+    <Content Include="Areas\Teachers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Teachers\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Teachers\Views\CourseTeacher\Create.cshtml" />
+    <Content Include="Areas\Teachers\Views\CourseTeacher\Delete.cshtml" />
+    <Content Include="Areas\Teachers\Views\CourseTeacher\Details.cshtml" />
+    <Content Include="Areas\Teachers\Views\CourseTeacher\Edit.cshtml" />
+    <Content Include="Areas\Teachers\Views\CourseTeacher\Index.cshtml" />
+    <Content Include="Areas\Students\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\logo_i_vector_sort.png" />
@@ -174,12 +183,16 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
+    <Compile Include="Areas\Teachers\Controllers\CourseTeacherController.cs" />
+    <Compile Include="Areas\Teachers\TeachersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoriesAdminController.cs" />
     <Compile Include="Controllers\CourseAdminController.cs" />
     <Compile Include="Controllers\CourseStatusAdminController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
+    <Compile Include="Controllers\TagAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +263,12 @@
     <Content Include="Views\CourseStatusAdmin\Details.cshtml" />
     <Content Include="Views\CourseStatusAdmin\Edit.cshtml" />
     <Content Include="Views\CourseStatusAdmin\Index.cshtml" />
+    <Content Include="Views\Shared\TagAdmin\Create.cshtml" />
+    <Content Include="Views\Shared\TagAdmin\Delete.cshtml" />
+    <Content Include="Views\Shared\TagAdmin\Details.cshtml" />
+    <Content Include="Views\Shared\TagAdmin\Edit.cshtml" />
+    <Content Include="Views\Shared\TagAdmin\Index.cshtml" />
+    <Content Include="Views\Home\_CourseView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -273,6 +292,12 @@
     <EmbeddedResource Include="Migrations\201511270940021_Course-category_test1.resx">
       <DependentUpon>201511270940021_Course-category_test1.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Students\Controllers\" />
+    <Folder Include="Areas\Students\Models\" />
+    <Folder Include="Areas\Students\Views\Shared\" />
+    <Folder Include="Areas\Teachers\Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

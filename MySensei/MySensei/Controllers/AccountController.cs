@@ -46,7 +46,22 @@ namespace MySensei.Controllers
                     {
                         IsPersistent = false
                     }, ident);
-                    return Redirect(returnUrl);
+                    // role based start page
+                    //role Employer go to Employer page
+                    if (UserManager.IsInRole(user.Id, "Teacher"))
+                    {
+                        return RedirectToAction("Index", "Teachers/CourseTeacher");
+                    }
+                    //role Admin go to Admin page
+                    else if (UserManager.IsInRole(user.Id, "Administrators"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else
+                    {
+                        //no role
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
             ViewBag.returnUrl = returnUrl;

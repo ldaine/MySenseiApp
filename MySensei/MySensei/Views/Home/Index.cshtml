@@ -1,20 +1,15 @@
-﻿
+﻿@model List<MySensei.Models.AppCourse>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Welcome, @User.Identity.Name !</h2>
-<div class="panel panel-primary">
-    <div class="panel-heading">User Details</div>
-    <table class="table table-striped">
-        @foreach (string key in Model.Keys) {
-            <tr>
-                <td>@key</td>
-                <td>@Model[key]</td>
-            </tr>
-        }
-    </table>
+@foreach (var obj in Model)
+{
+    <p>Name: @obj.Headline</p>
+}
 
-</div>
 
 @Html.ActionLink("Sign Out ", "Logout", "Account", null, new { @class = "btn btn-primary" })
+
+
