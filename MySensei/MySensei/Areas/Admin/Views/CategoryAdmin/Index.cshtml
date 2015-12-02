@@ -1,10 +1,10 @@
-﻿@model IEnumerable<MySensei.Models.AppCourseStatus>
+﻿@model IEnumerable<MySensei.Models.AppCategory>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Categories</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th></th>
     </tr>
@@ -20,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

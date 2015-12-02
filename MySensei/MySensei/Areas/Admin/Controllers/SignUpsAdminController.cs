@@ -9,109 +9,118 @@ using System.Web.Mvc;
 using MySensei.Infrastructure;
 using MySensei.Models;
 
-namespace MySensei.Controllers
+namespace MySensei.Areas.Admin.Controllers
 {
-    public class CourseStatusAdminController : Controller
+    public class SignUpsAdminController : Controller
     {
         private AppIdentityDbContext db = new AppIdentityDbContext();
 
-        // GET: CourseStatusAdmin
+        // GET: Admin/SignUpsAdmin
         public ActionResult Index()
         {
-            return View(db.AppCourseStatuss.ToList());
+            var signUps = db.SignUps.Include(a => a.AppCourse).Include(a => a.AppUser);
+            return View(signUps.ToList());
         }
 
-        // GET: CourseStatusAdmin/Details/5
+        // GET: Admin/SignUpsAdmin/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
-            if (appCourseStatus == null)
+            AppSignUp appSignUp = db.SignUps.Find(id);
+            if (appSignUp == null)
             {
                 return HttpNotFound();
             }
-            return View(appCourseStatus);
+            return View(appSignUp);
         }
 
-        // GET: CourseStatusAdmin/Create
+        // GET: Admin/SignUpsAdmin/Create
         public ActionResult Create()
         {
+            ViewBag.AppCourseID = new SelectList(db.Courses, "ID", "AppUserID");
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
-        // POST: CourseStatusAdmin/Create
+        // POST: Admin/SignUpsAdmin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Status")] AppCourseStatus appCourseStatus)
+        public ActionResult Create([Bind(Include = "ID,AppUserID,AppCourseID,SignUpDate,feedback")] AppSignUp appSignUp)
         {
             if (ModelState.IsValid)
             {
-                db.AppCourseStatuss.Add(appCourseStatus);
+                db.SignUps.Add(appSignUp);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(appCourseStatus);
+            ViewBag.AppCourseID = new SelectList(db.Courses, "ID", "AppUserID", appSignUp.AppCourseID);
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appSignUp.AppUserID);
+            return View(appSignUp);
         }
 
-        // GET: CourseStatusAdmin/Edit/5
+        // GET: Admin/SignUpsAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
-            if (appCourseStatus == null)
+            AppSignUp appSignUp = db.SignUps.Find(id);
+            if (appSignUp == null)
             {
                 return HttpNotFound();
             }
-            return View(appCourseStatus);
+            ViewBag.AppCourseID = new SelectList(db.Courses, "ID", "AppUserID", appSignUp.AppCourseID);
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appSignUp.AppUserID);
+            return View(appSignUp);
         }
 
-        // POST: CourseStatusAdmin/Edit/5
+        // POST: Admin/SignUpsAdmin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Status")] AppCourseStatus appCourseStatus)
+        public ActionResult Edit([Bind(Include = "ID,AppUserID,AppCourseID,SignUpDate,feedback")] AppSignUp appSignUp)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(appCourseStatus).State = EntityState.Modified;
+                db.Entry(appSignUp).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(appCourseStatus);
+            ViewBag.AppCourseID = new SelectList(db.Courses, "ID", "AppUserID", appSignUp.AppCourseID);
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appSignUp.AppUserID);
+            return View(appSignUp);
         }
 
-        // GET: CourseStatusAdmin/Delete/5
+        // GET: Admin/SignUpsAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
-            if (appCourseStatus == null)
+            AppSignUp appSignUp = db.SignUps.Find(id);
+            if (appSignUp == null)
             {
                 return HttpNotFound();
             }
-            return View(appCourseStatus);
+            return View(appSignUp);
         }
 
-        // POST: CourseStatusAdmin/Delete/5
+        // POST: Admin/SignUpsAdmin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AppCourseStatus appCourseStatus = db.AppCourseStatuss.Find(id);
-            db.AppCourseStatuss.Remove(appCourseStatus);
+            AppSignUp appSignUp = db.SignUps.Find(id);
+            db.SignUps.Remove(appSignUp);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

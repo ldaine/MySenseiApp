@@ -9,20 +9,20 @@ using System.Web.Mvc;
 using MySensei.Infrastructure;
 using MySensei.Models;
 
-namespace MySensei.Controllers
+namespace MySensei.Areas.Admin.Controllers
 {
     public class CourseAdminController : Controller
     {
         private AppIdentityDbContext db = new AppIdentityDbContext();
 
-        // GET: CourseAdmin
+        // GET: Admin/CourseAdmin
         public ActionResult Index()
         {
             var courses = db.Courses.Include(a => a.AppCategory).Include(a => a.AppCourseStatus).Include(a => a.AppUser);
             return View(courses.ToList());
         }
 
-        // GET: CourseAdmin/Details/5
+        // GET: Admin/CourseAdmin/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,7 +37,7 @@ namespace MySensei.Controllers
             return View(appCourse);
         }
 
-        // GET: CourseAdmin/Create
+        // GET: Admin/CourseAdmin/Create
         public ActionResult Create()
         {
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category");
@@ -46,7 +46,7 @@ namespace MySensei.Controllers
             return View();
         }
 
-        // POST: CourseAdmin/Create
+        // POST: Admin/CourseAdmin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +66,7 @@ namespace MySensei.Controllers
             return View(appCourse);
         }
 
-        // GET: CourseAdmin/Edit/5
+        // GET: Admin/CourseAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,7 +84,7 @@ namespace MySensei.Controllers
             return View(appCourse);
         }
 
-        // POST: CourseAdmin/Edit/5
+        // POST: Admin/CourseAdmin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -103,7 +103,7 @@ namespace MySensei.Controllers
             return View(appCourse);
         }
 
-        // GET: CourseAdmin/Delete/5
+        // GET: Admin/CourseAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,7 +118,7 @@ namespace MySensei.Controllers
             return View(appCourse);
         }
 
-        // POST: CourseAdmin/Delete/5
+        // POST: Admin/CourseAdmin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

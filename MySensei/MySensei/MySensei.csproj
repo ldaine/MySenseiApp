@@ -163,6 +163,42 @@
     <Content Include="Areas\Teachers\Views\CourseTeacher\Create.cshtml" />
     <Content Include="Areas\Teachers\Views\CourseTeacher\Edit.cshtml" />
     <Content Include="Areas\Teachers\Views\CourseTeacher\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseStatusAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseStatusAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseStatusAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseStatusAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseStatusAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TagAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TagAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TagAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TagAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TagAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SignUpsAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SignUpsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SignUpsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SignUpsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SignUpsAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\logo_i_vector_sort.png" />
@@ -183,15 +219,18 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseStatusAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SignUpsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagAdminController.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
     <Compile Include="Areas\Teachers\Controllers\CourseTeacherController.cs" />
     <Compile Include="Areas\Teachers\TeachersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CategoriesAdminController.cs" />
-    <Compile Include="Controllers\CourseAdminController.cs" />
-    <Compile Include="Controllers\CourseStatusAdminController.cs" />
-    <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,30 +259,9 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\RoleAdmin\Index.cshtml" />
-    <Content Include="Views\RoleAdmin\Create.cshtml" />
-    <Content Include="Views\RoleAdmin\Edit.cshtml" />
     <Content Include="Views\Shared\_LoginFront.cshtml" />
-    <Content Include="Views\CourseAdmin\Create.cshtml" />
-    <Content Include="Views\CourseAdmin\Delete.cshtml" />
-    <Content Include="Views\CourseAdmin\Details.cshtml" />
-    <Content Include="Views\CourseAdmin\Edit.cshtml" />
-    <Content Include="Views\CourseAdmin\Index.cshtml" />
-    <Content Include="Views\CategoriesAdmin\Create.cshtml" />
-    <Content Include="Views\CategoriesAdmin\Delete.cshtml" />
-    <Content Include="Views\CategoriesAdmin\Details.cshtml" />
-    <Content Include="Views\CategoriesAdmin\Edit.cshtml" />
-    <Content Include="Views\CategoriesAdmin\Index.cshtml" />
-    <Content Include="Views\CourseStatusAdmin\Create.cshtml" />
-    <Content Include="Views\CourseStatusAdmin\Delete.cshtml" />
-    <Content Include="Views\CourseStatusAdmin\Details.cshtml" />
-    <Content Include="Views\CourseStatusAdmin\Edit.cshtml" />
-    <Content Include="Views\CourseStatusAdmin\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
@@ -256,6 +274,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Students\Controllers\" />
     <Folder Include="Areas\Students\Models\" />
     <Folder Include="Areas\Students\Views\Shared\" />

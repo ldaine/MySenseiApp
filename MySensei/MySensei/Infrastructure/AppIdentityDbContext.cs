@@ -25,7 +25,7 @@ namespace MySensei.Infrastructure
             return new AppIdentityDbContext();
         }
 
-        
+        public System.Data.Entity.DbSet<MySensei.Models.AppRole> IdentityRoles { get; set; }
     }
 
     public class IdentityDbInit : NullDatabaseInitializer<AppIdentityDbContext>

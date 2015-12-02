@@ -82,7 +82,7 @@ namespace MySensei.Controllers
                     //role Admin go to Admin page
                     else if (UserManager.IsInRole(user.Id, "Administrators"))
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Admin/Admin");
                     }
                     else
                     {

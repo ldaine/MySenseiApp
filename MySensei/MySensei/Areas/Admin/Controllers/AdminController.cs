@@ -7,9 +7,10 @@ using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System;
 
-namespace MySensei.Controllers
+namespace MySensei.Areas.Admin.Controllers
 {
 
+    // GET: Admin/Admin
     [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
@@ -106,7 +107,7 @@ namespace MySensei.Controllers
                     Biography = user.Biography,
                     Birthday = user.Birthday,
                 };
-                if(user.City != null)
+                if (user.City != null)
                 {
                     editUser.City = (Cities)System.Enum.Parse(typeof(Cities), user.City);
                 }
