@@ -34,4 +34,19 @@
         </ul>
     </nav>
 
- @*<div class="location">@Html.Partial("_CoursesView")</div>*@
+@section price {
+    <div style="width: 100%; height: 100vh; border: 1px solid black; margin-top: 100vh;">
+        <div>@Html.ActionLink("Music", "FrontCategories", new { ids = 1 })</div>
+        <div>@Html.ActionLink("Sport", "FrontCategories", new { ids = 2 })</div>
+        <div>@Html.ActionLink("Art", "FrontCategories", new { ids = 3 })</div>
+        <div>@Html.ActionLink("School", "FrontCategories", new { ids = 4 })</div>
+        @*@foreach (var stuff in ViewBag.Appcourses)
+        {
+
+            <div style="width: 300px; height: 150px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px; color: black;">
+                <p>Headline: @stuff.Headline </p>
+                <p>Description: @stuff.Description </p>
+            </div>
+        }*@
+    </div>
+}

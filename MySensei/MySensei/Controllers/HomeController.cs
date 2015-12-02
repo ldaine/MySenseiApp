@@ -30,7 +30,7 @@ namespace MySensei.Controllers
                 //var course = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()) || c => c.Description.ToUpper().Contains(searchString.ToUpper()));
             }
 
-
+            
             //  List<AppCourse> something = db.Database.SqlQuery<AppCourse>("select headline from dbo.AppCourses").ToList();
 
             return View(courses);
@@ -49,6 +49,40 @@ namespace MySensei.Controllers
             }
             return View(appCourse);
         }
+
+        public ActionResult Categories(int? ids)
+        {
+            if (ids == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            } 
+            //AppCategory appCategories = db.AppCategorys.Find(ids);
+            //ViewBag.Appp  = db.Courses.Where(b => b.AppCategoryID == ids);
+            ViewBag.Appp = from c in db.Courses where c.AppCategoryID == ids select c;
+            //appCourse.ToList();
+            //AppCourse appCourse = db.Courses.Find(ids);
+            //ViewBag.Apppp = appCourse;
+            if (ViewBag.Appp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ViewBag.Appp); 
+
+        }
+
+     /*   public ActionResult Categories(int? ids)
+        {
+            if (ids == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppCategory appCategory = db.AppCategorys.Find(db.Courses.Find(ids));
+            if (appCategory == null)
+            {
+                return HttpNotFound();
+            }
+            return View(appCategory);
+        } */
 
 
         /*      [Authorize(Roles = "Teacher")]
