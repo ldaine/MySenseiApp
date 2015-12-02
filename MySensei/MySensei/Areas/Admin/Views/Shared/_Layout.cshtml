@@ -17,17 +17,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MySenseiAdmin", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("MySenseiAdmin", "Index", "Admin", new { area = "Admin" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav  navbar-right">
-                    <li>@Html.ActionLink("Go to User View", "Index", "Home", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("Users", "Index", "Admin", new { area = "Admin" }, new { })</li>
                     <li>@Html.ActionLink("Roles", "Index", "RoleAdmin", new { area = "Admin" }, new { })</li>
                     <li>@Html.ActionLink("Courses", "Index", "CourseAdmin", new { area = "Admin" }, new { })</li>
                     <li>@Html.ActionLink("SignUps", "Index", "SignUpsAdmin", new { area = "Admin" }, new { })</li>
                     <li>@Html.ActionLink("Ctegories", "Index", "CategoryAdmin", new { area = "Admin" }, new { })</li>
                     <li>@Html.ActionLink("Tags", "Index", "TagAdmin", new { area = "Admin" }, new { })</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { })</li>
                 </ul>
             </div>
         </div>
