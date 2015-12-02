@@ -7,6 +7,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using MySensei.Infrastructure;
 using System.Web;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Collections;
 
 namespace MySensei.Controllers
 {
@@ -22,8 +26,28 @@ namespace MySensei.Controllers
                 return View("Error", new string[] { "Access Denied" });
             }
 
+            //list out the courses
+            ViewBag.Appcourses = from c in db.Courses select c;
+
             ViewBag.returnUrl = returnUrl;
             return View();
+        }
+
+        //Categories 
+        [AllowAnonymous]
+        public ActionResult FrontCategories(int? ids)
+        {
+            if (ids == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.Appp = from c in db.Courses where c.AppCategoryID == ids select c;
+            if (ViewBag.Appp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ViewBag.Appp);
+
         }
 
         [HttpPost]
@@ -68,6 +92,7 @@ namespace MySensei.Controllers
 
                 }
             }
+
             ViewBag.returnUrl = returnUrl;
                         return View(details);
         }
