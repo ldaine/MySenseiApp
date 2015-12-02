@@ -70,7 +70,7 @@ namespace MySensei.Controllers
                     Gender = model.Gender.ToString(),
                     Biography = model.Biography,
                     Birthday = model.Birthday,
-                    PrimaryLanguage = model.PrimaryLanguage.ToString(),
+                    PrimaryLanguage = model.PrimaryLanguage.ToString()
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -92,7 +92,34 @@ namespace MySensei.Controllers
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
             {
-                return View(user);
+                UserEditModel editUser = new UserEditModel
+                {
+                    ID = id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Address = user.Address,
+                    Zip = user.Zip,
+                    Country = user.Country,
+                    Avatar = user.Avatar,
+                    Biography = user.Biography,
+                    Birthday = user.Birthday,
+                };
+                if(user.City != null)
+                {
+                    editUser.City = (Cities)System.Enum.Parse(typeof(Cities), user.City);
+                }
+                if (user.Gender != null)
+                {
+                    editUser.Gender = (Gender)System.Enum.Parse(typeof(Gender), user.Gender);
+                }
+
+                if (user.City != null)
+                {
+                    editUser.PrimaryLanguage = (Language)System.Enum.Parse(typeof(Language), user.PrimaryLanguage);
+                }
+                return View(editUser);
             }
             else
             {
@@ -101,30 +128,26 @@ namespace MySensei.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(string id, string firstname, string lastname,
-                                            string username, string email, string address,
-                                            string zip, string city, string country,
-                                            string avatar, string gender, string biography,
-                                            DateTime birthday, string primaryLanguage, string password)
+        public async Task<ActionResult> Edit(UserEditModel model, string password)
         {
-            AppUser user = await UserManager.FindByIdAsync(id);
+            AppUser user = await UserManager.FindByIdAsync(model.ID);
             if (user != null)
             {
-                user.FirstName = firstname;
-                user.LastName = lastname;
-                user.UserName = username;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.UserName = model.UserName;
 
-                user.Address = address;
-                user.Zip = zip;
-                user.City = city;
-                user.Country = country;
-                user.Avatar = avatar;
-                user.Gender = gender;
-                user.Biography = biography;
-                user.Birthday = birthday;
-                user.PrimaryLanguage = primaryLanguage;
+                user.Address = model.Address;
+                user.Zip = model.Zip;
+                user.City = model.City.ToString();
+                user.Country = "Danmark";
+                user.Avatar = model.Avatar;
+                user.Gender = model.Gender.ToString();
+                user.Biography = model.Biography;
+                user.Birthday = model.Birthday;
+                user.PrimaryLanguage = model.PrimaryLanguage.ToString();
 
-                user.Email = email;
+                user.Email = model.Email;
 
                 IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
                 if (!validEmail.Succeeded)
