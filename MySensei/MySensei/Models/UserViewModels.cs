@@ -19,15 +19,15 @@ namespace MySensei.Models
 
         public string Address { get; set; }
         public string Zip { get; set; }
-        public string City { get; set; }
+        public Cities City { get; set; }
         public string Country { get; set; }
         public string Avatar { get; set; }//link to image - maybe save the images in seperate table?
-        public string Gender { get; set; } //male or female
+        public Gender Gender { get; set; } //male or female
         public string Biography { get; set; }
         [DataType(DataType.Date)]
         public DateTime? Birthday { get; set; }
         [Display(Name="Primary Language")]
-        public string PrimaryLanguage { get; set; }
+        public Language PrimaryLanguage { get; set; }
 
     }
 

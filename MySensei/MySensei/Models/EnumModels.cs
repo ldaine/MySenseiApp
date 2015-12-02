@@ -15,7 +15,7 @@ namespace MySensei.Models
     public enum Language
     {
         Danish,
-        English, 
+        English,
         German
     }
 
@@ -76,7 +76,7 @@ namespace MySensei.Models
         [Display(Name = "Nørresundby")]
         Norresundby,
         Ringsted,
-        [Display(Name= "Ølstykke-Stenløse")]
+        [Display(Name = "Ølstykke-Stenløse")]
         OlstykkeStenlose,
         Skive
     }

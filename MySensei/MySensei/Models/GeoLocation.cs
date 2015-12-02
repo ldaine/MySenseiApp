@@ -27,12 +27,12 @@ namespace MySensei.Models
     public class City
     {
         public int ID { get; set; }
-    //    public int CountryID { get; set; }
+        //    public int CountryID { get; set; }
         [StringLength(10)]
         public string CC_FIPS { get; set; }
         [StringLength(100)]
         public string FULL_NAME_ND { get; set; }
-    //    public virtual Country Country { get; set; }
+        //    public virtual Country Country { get; set; }
     }
 
 

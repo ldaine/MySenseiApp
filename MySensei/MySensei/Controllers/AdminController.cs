@@ -64,13 +64,13 @@ namespace MySensei.Controllers
                     Email = model.Email,
                     Address = model.Address,
                     Zip = model.Zip,
-                    City = model.City,
-                    Country = model.Country,
+                    City = model.City.ToString(),
+                    Country = "Danmark",
                     Avatar = model.Avatar,
-                    Gender = model.Gender,
+                    Gender = model.Gender.ToString(),
                     Biography = model.Biography,
                     Birthday = model.Birthday,
-                    PrimaryLanguage = model.PrimaryLanguage,
+                    PrimaryLanguage = model.PrimaryLanguage.ToString(),
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

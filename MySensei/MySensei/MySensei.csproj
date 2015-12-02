@@ -211,6 +211,8 @@
     <Compile Include="Models\AppTag.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\AppSignUp.cs" />
+    <Compile Include="Models\EnumModels.cs" />
+    <Compile Include="Models\GeoLocation.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
