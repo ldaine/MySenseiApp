@@ -71,7 +71,8 @@ namespace MySensei.Areas.Admin.Controllers
                     Gender = model.Gender.ToString(),
                     Biography = model.Biography,
                     Birthday = model.Birthday,
-                    PrimaryLanguage = model.PrimaryLanguage.ToString()
+                    PrimaryLanguage = model.PrimaryLanguage.ToString(),
+                    CreatedAt = DateTime.Now
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

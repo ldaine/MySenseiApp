@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MySensei.Models
 {
@@ -11,6 +12,8 @@ namespace MySensei.Models
         public string FirstName { get; set; }
         [StringLength(50)]
         public string LastName { get; set; }
+        [NotMapped]
+        public string FullName { get { return FirstName + ' ' + LastName; } }
         public DateTime? CreatedAt { get; set; }
         [StringLength(150)]
         public string Address { get; set; }

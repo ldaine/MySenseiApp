@@ -40,9 +40,11 @@ namespace MySensei.Areas.Admin.Controllers
         // GET: Admin/CourseAdmin/Create
         public ActionResult Create()
         {
+            var teacher = db.Roles.Where(x => x.Name == "Teacher").FirstOrDefault().Id;
+            var users = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(teacher));
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category");
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status");
-            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.AppUserID = new SelectList(users, "Id", "FullName");
             return View();
         }
 
@@ -51,10 +53,25 @@ namespace MySensei.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,AppUserID,AppCategoryID,AppCourseStatusID,Course,Headline,Description,CourseImage,CreatedAt,Location,Price,Rating,MaxAttendance")] AppCourse appCourse)
+        public ActionResult Create( CreateCourseModel model, string password)
         {
+            AppCourse appCourse = new AppCourse();
             if (ModelState.IsValid)
             {
+                appCourse.AppUserID = model.AppUserID;
+                appCourse.AppCategoryID = model.AppCategoryID;
+                appCourse.AppCourseStatusID = db.AppCourseStatuss.Where(x => x.Status == "New").FirstOrDefault().ID;
+                appCourse.Course = model.Course;
+                appCourse.Headline = model.Headline;
+                appCourse.Description = model.Description;
+                appCourse.CourseImage = model.CourseImage;
+                appCourse.CreatedAt = DateTime.Now;
+                appCourse.Location = model.Location;
+                appCourse.Price = model.Price;
+                appCourse.Rating = 0;
+                appCourse.MaxAttendance = model.MaxAttendance;
+
+
                 db.Courses.Add(appCourse);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,7 +80,7 @@ namespace MySensei.Areas.Admin.Controllers
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
             ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
-            return View(appCourse);
+            return View(model);
         }
 
         // GET: Admin/CourseAdmin/Edit/5
