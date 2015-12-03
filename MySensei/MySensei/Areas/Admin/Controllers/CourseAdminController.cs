@@ -109,10 +109,34 @@ namespace MySensei.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            EditCourseModel model = new EditCourseModel()
+            {
+                ID = id.GetValueOrDefault(), 
+                AppUserID = appCourse.AppUserID,
+                AppCategoryID = appCourse.AppCategoryID,
+                AppCourseStatusID = appCourse.AppCourseStatusID,
+                Course = appCourse.Course,
+                Headline = appCourse.Headline,
+                Description = appCourse.Description,
+                CourseImage = appCourse.CourseImage,
+                Location = appCourse.Location,
+                Price = appCourse.Price,
+                MaxAttendance = appCourse.MaxAttendance,
+                TagIDs = new List<int>()
+            };
+
+            model.TagIDs = new List<int>();
+            foreach (AppTag tag in appCourse.AppTags)
+            {
+                model.TagIDs.Add(tag.ID);
+            }
+           
+        // model.TagIDs = db.AppTags.GetDivisionByContactID(c.ContactID).Select(c => c.DivisionID);
+            ViewBag.TagID = new MultiSelectList(db.AppTags, "ID", "Tag");
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
             ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
-            return View(appCourse);
+            return View(model);
         }
 
         // POST: Admin/CourseAdmin/Edit/5
@@ -120,8 +144,49 @@ namespace MySensei.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,AppUserID,AppCategoryID,AppCourseStatusID,Course,Headline,Description,CourseImage,CreatedAt,Location,Price,Rating,MaxAttendance")] AppCourse appCourse)
+        public ActionResult Edit(EditCourseModel model)
         {
+            AppCourse appCourse = db.Courses.Find(model.ID);
+
+            appCourse.AppUserID = model.AppUserID;
+            appCourse.AppCategoryID = model.AppCategoryID;
+            appCourse.AppCourseStatusID = model.AppCourseStatusID;
+            appCourse.Course = model.Course;
+            appCourse.Headline = model.Headline;
+            appCourse.Description = model.Description;
+            appCourse.CourseImage = model.CourseImage;
+            appCourse.Location = model.Location;
+            appCourse.Price = model.Price;
+            appCourse.MaxAttendance = model.MaxAttendance;
+
+            //createing tag list of it doesnt exist
+            if (appCourse.AppTags == null)
+            {
+                appCourse.AppTags = new List<AppTag>();
+            }
+            //looping through existing tags
+            foreach (AppTag tag in appCourse.AppTags.ToList<AppTag>())
+            {
+                //If the new tag list contains tag that already was in the course, remove it from the list. 
+                //else if the new tag list doesnt contain the tag, it must be deleted. 
+                if (model.TagIDs.Contains(tag.ID))
+                {
+                    model.TagIDs.Remove(tag.ID);
+                } else
+                {
+                    appCourse.AppTags.Remove(tag);
+                }
+            }
+
+            //Add tags that are newly added 
+            //(the tags that exist in the model before editing were removed from the list in previous loop)
+            foreach (int id in model.TagIDs)
+            {
+                AppTag tag = db.AppTags.Where(x => x.ID == id).FirstOrDefault();
+                appCourse.AppTags.Add(tag);
+            }
+
+            //If the model is valid, save changes. 
             if (ModelState.IsValid)
             {
                 db.Entry(appCourse).State = EntityState.Modified;
@@ -131,7 +196,7 @@ namespace MySensei.Areas.Admin.Controllers
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
             ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
-            return View(appCourse);
+            return View(model);
         }
 
         // GET: Admin/CourseAdmin/Delete/5
