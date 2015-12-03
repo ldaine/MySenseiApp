@@ -40,9 +40,12 @@ namespace MySensei.Areas.Admin.Controllers
         // GET: Admin/CourseAdmin/Create
         public ActionResult Create()
         {
+            //CreateCourseModel model = new CreateCourseModel();
             var teacher = db.Roles.Where(x => x.Name == "Teacher").FirstOrDefault().Id;
             var users = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(teacher));
+           // model.TagIDs = db.AppTags.GetDivisionByContactID(c.ContactID).Select(c => c.DivisionID);
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category");
+            ViewBag.TagID = new MultiSelectList(db.AppTags, "ID", "Tag");
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status");
             ViewBag.AppUserID = new SelectList(users, "Id", "FullName");
             return View();
@@ -71,9 +74,20 @@ namespace MySensei.Areas.Admin.Controllers
                 appCourse.Rating = 0;
                 appCourse.MaxAttendance = model.MaxAttendance;
 
+                //Adding tags to course
+                if(appCourse.AppTags == null){
+                    appCourse.AppTags = new List<AppTag>();
+                }
+                foreach (int id in model.TagIDs)
+                {
+                    AppTag tag = db.AppTags.Where(x => x.ID == id).FirstOrDefault();
+                    appCourse.AppTags.Add(tag);
+                }
 
+                //saving course in database
                 db.Courses.Add(appCourse);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

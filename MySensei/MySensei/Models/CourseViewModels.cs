@@ -25,5 +25,8 @@ namespace MySensei.Models
         public double Rating { get; set; }
         [Display(Name = "Max Students")]
         public int MaxAttendance { get; set; }
+        [Display(Name = "Tags")]
+        public IEnumerable<int> TagIDs {get;set;}
+
     }
 }
