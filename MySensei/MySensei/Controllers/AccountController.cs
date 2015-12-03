@@ -99,16 +99,29 @@ namespace MySensei.Controllers
 
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string role)
         {
-            return View();
+            if(role == "teacher")
+            {
+                return View("RegisterTeacher");
+
+            }
+            else if (role == "student")
+            {
+                return View("RegisterStudent");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+                
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/RegisterTeacher
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<ActionResult> RegisterTeacher(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -117,12 +130,50 @@ namespace MySensei.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.UserName,
-                    Email = model.Email
+                    Email = model.Email 
+                    
+                    
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
+                    var currentUser = UserManager.FindByName(user.UserName);
+
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "Student");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View(model);
+        }
+
+        // POST: /Account/RegisterStudent
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> RegisterStudent(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = new AppUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.UserName,
+                    Email = model.Email, 
+                };
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    var currentUser = UserManager.FindByName(user.UserName);
+
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "Teacher");
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

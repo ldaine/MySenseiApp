@@ -21,7 +21,14 @@
     
 }
 <p>
-    @Html.ActionLink("Register as a new user", "Register")
+    @Html.ActionLink("Register as a Student",
+                     "Register",
+                     new { role = "student" })
+</p>
+<p>
+    @Html.ActionLink("Register as a Teacher",
+                     "Register",
+                     new { role = "teacher" })
 </p>
 <p><a href="#">Continue as guest</a></p>
     <nav>
