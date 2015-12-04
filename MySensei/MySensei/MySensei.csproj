@@ -275,6 +275,7 @@
     <Content Include="Views\FrontPage\Categories.cshtml" />
     <Content Include="Views\FrontPage\Courses.cshtml" />
     <Content Include="Views\FrontPage\Lessons.cshtml" />
+    <Content Include="Views\Account\RegisterStudent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,9 +3,8 @@
 
 <h4>Create a new account as a Techer.</h4>
 @Html.ValidationSummary(false)
-@using (Html.BeginForm())
+@using (Html.BeginForm("RegisterTeacher", "Account"))
 {
-
     <div class="form-group">
         <label>First name</label>
         @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })

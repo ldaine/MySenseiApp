@@ -140,7 +140,7 @@ namespace MySensei.Controllers
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
 
-                    var roleresult = UserManager.AddToRole(currentUser.Id, "Student");
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "Teacher");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -172,7 +172,7 @@ namespace MySensei.Controllers
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
 
-                    var roleresult = UserManager.AddToRole(currentUser.Id, "Teacher");
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "Student");
 
                     return RedirectToAction("Index", "Home");
                 }
