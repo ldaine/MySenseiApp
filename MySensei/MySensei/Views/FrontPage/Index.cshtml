@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MySensei.Models.FrontPageModel
+@{
     Layout = "~/Views/Shared/_FrontPage.cshtml";
 }
 @{ ViewBag.Title = "MySensei | Learn what you want to!";}
@@ -10,19 +11,29 @@
         <li><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
-        <div style="float:right; padding: 5px;">@Html.ActionLink("Log In", "Login", "Account")</div>
+        <div style="float:right; padding: 5px; display:inline">@Html.ActionLink("Log In", "Login", "Account")</div>
+
     </ul>
 </nav>
 <div class="wrapper">
 
 </div>
-<div class="search">
-    @using (Html.BeginForm())
+<div class="search" style="display: inline-block">
+    @using (Html.BeginForm("Lessons", "FrontPage"))
     {
         <p>
             Search: @Html.TextBox("searchString")
             <input type="submit" value="Search" />
         </p>
+    }
+    @using (Html.BeginForm("Location", "FrontPage"))
+    {
+        <div>
+            @Html.LabelFor(x => x.City)
+            @Html.EnumDropDownListFor(x => x.City, "Select")
+            <button type="submit">find</button>
+        </div>
+        @*@Html.DropDownListFor(x => x.Cities, (IEnumerable<SelectListItem>)(ViewBag.Location))*@
     }
 </div>
 <div class="categories">

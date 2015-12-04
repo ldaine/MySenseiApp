@@ -256,6 +256,7 @@
     <Compile Include="Models\CourseViewModels.cs" />
     <Compile Include="Models\EnumModels.cs" />
     <Compile Include="Models\GeoLocation.cs" />
+    <Compile Include="Models\OtherViewModels.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -276,6 +277,7 @@
     <Content Include="Views\FrontPage\Courses.cshtml" />
     <Content Include="Views\FrontPage\Lessons.cshtml" />
     <Content Include="Views\Account\RegisterStudent.cshtml" />
+    <Content Include="Views\FrontPage\Location.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

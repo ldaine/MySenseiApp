@@ -1,4 +1,4 @@
-﻿@model MySensei.Models.AppCourse
+﻿@model IEnumerable<MySensei.Models.AppCourse>
 
 @{
     ViewBag.Title = "Lessons";
@@ -6,105 +6,118 @@
 
 <h2>Lessons</h2>
 
-<div>
-    <h4>AppCourse</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AppCategory.Category)
-        </dt>
+@foreach (var obj in Model)
+{
+    <div style="width: 300px; height: 250px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px;">
+        <h3>@obj.Headline</h3>
+        <ul>
+            <li>Description: @obj.Description</li>
+            <li>Location: @obj.Location</li>
+            <li>Price: @obj.Price dkk</li>
+            <li>Maximum attendance: @obj.MaxAttendance</li>
+        </ul>
+        @Html.ActionLink("Details", "Details", new { id = obj.ID })
+    </div>
+}
+@*<div>
+        <h4>AppCourse</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AppCategory.Category)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AppCategory.Category)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AppCategory.Category)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AppCourseStatus.Status)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.AppCourseStatus.Status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AppCourseStatus.Status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AppCourseStatus.Status)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AppUser.FirstName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.AppUser.FirstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AppUser.FirstName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AppUser.FirstName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Course)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Headline)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Headline)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Headline)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Headline)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseImage)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CourseImage)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseImage)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CourseImage)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedAt)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxAttendance)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaxAttendance)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaxAttendance)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MaxAttendance)
+            </dd>
 
-    </dl>
-</div>
+        </dl>
+    </div>*@

@@ -19,9 +19,23 @@ namespace MySensei.Controllers
     {
         private AppIdentityDbContext db = new AppIdentityDbContext();
         // GET: FrontPage
-        public ActionResult Index()
+        public ActionResult Index(FrontPageModel something)
         {
-            return View();
+            /* List<SelectListItem> list = new List<SelectListItem>
+             {
+             new SelectListItem {  Text = "text1", Value = "11"},
+             new SelectListItem { Text = "text2", Value = "12"},
+             new SelectListItem {Text = "text3", Value = "13"},
+             new SelectListItem {Text = "text4", Value = "14"},
+             new SelectListItem { Text = "text5", Value = "15"}
+             };*/
+
+
+            //Cities citiess = new Cities();
+            //var allCities =  new IEnumerable<CreateModel();
+            //ViewBag.Locations = new SelectList(allCities.City);
+
+            return View(something);
         }
 
         //Categories 
@@ -42,26 +56,39 @@ namespace MySensei.Controllers
 
         }
 
+        //Search for lessons
         [AllowAnonymous]
-        public ActionResult Courses(string searchString)
+        public ActionResult Lessons(string searchString)
         {
             var courses = from c in db.Courses select c;
             if (!string.IsNullOrEmpty(searchString))
             {
 
                 courses = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()));
-                //var course = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()) || c => c.Description.ToUpper().Contains(searchString.ToUpper()));
             }
-            //  List<AppCourse> something = db.Database.SqlQuery<AppCourse>("select headline from dbo.AppCourses").ToList();
 
             return View(courses);
         }
 
-        public ActionResult Lessons()
+        //Location dropdown list
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Location(FrontPageModel model)
         {
-            //AppCourse lessons = db.Courses.Find(2);
-            return View();
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.Loc = from c in db.Courses where c.Location == model.City.ToString() select c;
+            ViewBag.Local = model.City.ToString();
+            if (ViewBag.Loc == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ViewBag.Loc);
+
         }
+
     }
 
 }
