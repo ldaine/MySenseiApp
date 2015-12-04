@@ -145,6 +145,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FrontPage.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\LoginFront.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -201,6 +202,7 @@
     <Content Include="Areas\Admin\Views\SignUpsAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
+    <Content Include="img\banner.jpg" />
     <Content Include="img\logo_i_vector_sort.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -231,6 +233,7 @@
     <Compile Include="Areas\Teachers\Controllers\CourseTeacherController.cs" />
     <Compile Include="Areas\Teachers\TeachersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FrontPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -267,6 +270,11 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
     <Content Include="Views\Account\FrontCategories.cshtml" />
+    <Content Include="Views\FrontPage\Index.cshtml" />
+    <Content Include="Views\Shared\_FrontPage.cshtml" />
+    <Content Include="Views\FrontPage\Categories.cshtml" />
+    <Content Include="Views\FrontPage\Courses.cshtml" />
+    <Content Include="Views\FrontPage\Lessons.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

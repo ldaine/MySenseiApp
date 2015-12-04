@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
+}
+@{ ViewBag.Title = "MySensei | Learn what you want to!";}
+
+<nav>
+    <ul>
+        <li><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <div style="float:right; padding: 5px;">@Html.ActionLink("Log In", "Login", "Account")</div>
+    </ul>
+</nav>
+<div class="wrapper">
+
+</div>
+<div class="search">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search: @Html.TextBox("searchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+<div class="categories">
+    <div class="category-box">
+        @Html.ActionLink("Sport", "Categories", new { ids = 2 })
+    </div>
+    <div class="category-box">
+        @Html.ActionLink("Music", "Categories", new { ids = 1 })
+    </div>
+    <div class="category-box">
+        @Html.ActionLink("Arts & Crafts", "Categories", new { ids = 3 })
+    </div>
+    <div class="category-box">
+        @Html.ActionLink("School", "Categories", new { ids = 4 })
+    </div>
+    <div class="category-box">
+        Computer skills
+    </div>
+    <div class="category-box">
+        Languages
+    </div>
+    <div class="category-box">
+        Travel
+    </div>
+    <div class="category-box">
+        Cooking
+    </div>
+    <div class="category-box">
+        Economics & Finance
+    </div>
+    <h2>@Html.ActionLink("All Lessons", "Lessons")</h2>
+    <div>
+
+        @*@foreach (var stuff in ViewBag.Appcourses)
+            {
+
+                <div style="width: 300px; height: 150px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px; color: black;">
+                    <p>Headline: @stuff.Headline </p>
+                    <p>Description: @stuff.Description </p>
+                </div>
+            }*@
+    </div>
+</div>
+<div class="introduction">
+    <h1>We are ready to help you become a Sensei</h1>
+    <h2>Become a member of MySensei society: Get the most exerienced tutors, learn new things and share them with others.</h2>
+</div>
+<div class="teacher">
+    <h2>Want to become a teacher of MySensei, and share you knowledge with others? Feel free to join our community</h2>
+</div>
+<footer>
+    <h1>MySensei</h1>
+    <h2>We care what do you think!</h2>
+</footer>
+
