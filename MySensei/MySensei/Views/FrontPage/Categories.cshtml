@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MySensei.Models.AppCourse>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>@ViewBag.CategName.Category</h2>
+
+
+
+@foreach (var thing in ViewBag.Categ)
+{
+    <div style="width: 250px; height: 200px; border: 1px solid black; display: inline-block; margin: 5px; padding: 5px;">
+    <h3>@thing.Headline</h3>
+    <p>Description: @thing.Description</p>
+    <p>Location: @thing.Location</p>
+    <p>Price: @thing.Price dkk/h</p>
+    </div>
+}
