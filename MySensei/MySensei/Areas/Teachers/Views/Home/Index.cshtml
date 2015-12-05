@@ -4,28 +4,13 @@
 }
 
 <h3>Welcome, @User.Identity.Name !</h3>
-@foreach (var obj in Model)
-{
-    <div style="width: 300px; height: 250px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px;">
-        <h3>@obj.Headline</h3>
-        <ul>
-            <li>Description: @obj.Description</li>
-            <li>Location: @obj.Location</li>
-            <li>Price: @obj.Price dkk</li>
-            <li>Maximum attendance: @obj.MaxAttendance</li>
-        </ul>
-        @Html.ActionLink("Details", "Details", new { id = obj.ID })
-    </div>
-}
+
+@Html.Action("_CoursesFromCurrentUserSignedUp", "Utility", new { area = "" });
 
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by title: @Html.TextBox("searchString")
-        <input type="submit" value="Search" />
-    </p>
-}
+@Html.Action("_AllCoursesSearchBox", "Utility", new { area = "" });
+
+
 <div>@Html.ActionLink("Music", "Categories", new { ids = 1 })</div>
 <div>@Html.ActionLink("Sport", "Categories", new { ids = 2 })</div>
 <div>@Html.ActionLink("Art", "Categories", new { ids = 3 })</div>

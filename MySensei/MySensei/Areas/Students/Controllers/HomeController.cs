@@ -19,69 +19,9 @@ namespace MySensei.Areas.Students.Controllers
         [Authorize]
         public ViewResult Index(string searchString)
         {
-            var userID = User.Identity.GetUserId();
-            var courses = from c in db.Courses select c;
-
-            var myCourses = db.Courses.Where(c => c.SignUps.Select(x => x.AppUserID).Contains(userID));
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                courses = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()));
-                //var course = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()) || c => c.Description.ToUpper().Contains(searchString.ToUpper()));
-            }
-
-
-            //  List<AppCourse> something = db.Database.SqlQuery<AppCourse>("select headline from dbo.AppCourses").ToList();
-
-            return View(myCourses);
+            return View();
         }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AppCourse appCourse = db.Courses.Find(id);
-            if (appCourse == null)
-            {
-                return HttpNotFound();
-            }
-            return View(appCourse);
-        }
-        public ActionResult SignUpForCourse(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            //Create a sign up object
-            AppSignUp appSignUp = new AppSignUp();
-            appSignUp.AppUserID = User.Identity.GetUserId();
-            if(id != null) { appSignUp.AppCourseID = id.GetValueOrDefault(); }
-            appSignUp.SignUpDate = DateTime.Now;
-                       
-            AppSignUp NewAppSignUp = db.SignUps.Add(appSignUp);
-            //get the user and course
-            AppCourse appCourse = db.Courses.Find(id);
-            AppUser appUser = db.Users.Find(User.Identity.GetUserId());
-            
-            //check if the values are not null
-            if (appCourse == null)
-            {
-                return HttpNotFound();
-            }
-
-            if (appUser == null)
-            {
-                return HttpNotFound();
-            }
-
-            //add signup to course and user
-            appCourse.SignUps.Add(appSignUp);
-            appUser.SignUps.Add(appSignUp);
-            db.SaveChanges();
-            return View(appCourse);
-        }
 
         public ActionResult Categories(int? ids)
         {

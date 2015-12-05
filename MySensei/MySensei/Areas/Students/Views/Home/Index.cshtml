@@ -4,10 +4,8 @@
 }
 
 <h3>Welcome, @User.Identity.Name !</h3>
-@foreach (var obj in Model)
-{
-      @Html.Partial("~/Views/Shared/_CourseInfoBox_SignedUp.cshtml", obj);
-}
+
+@Html.Action("_CoursesFromCurrentUserSignedUp", "Utility", new { area = "" })
 
 <div>@Html.ActionLink("Music", "Categories", new { ids = 1 })</div>
 <div>@Html.ActionLink("Sport", "Categories", new { ids = 2 })</div>

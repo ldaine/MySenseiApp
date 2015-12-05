@@ -200,12 +200,9 @@
     <Content Include="Areas\Students\Views\web.config" />
     <Content Include="Areas\Students\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Students\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Students\Views\Home\Details.cshtml" />
     <Content Include="Areas\Students\Views\Home\Categories.cshtml" />
     <Content Include="Areas\Teachers\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Teachers\Views\Home\Details.cshtml" />
     <Content Include="Areas\Teachers\Views\Home\Categories.cshtml" />
-    <Content Include="Areas\Students\Views\Home\SignUpForCourse.cshtml" />
     <Content Include="App_Code\Helpers.cshtml" />
     <Content Include="Areas\Students\Views\User\Index.cshtml" />
     <Content Include="Areas\Students\Views\User\Edit.cshtml" />
@@ -291,7 +288,6 @@
     <Content Include="Views\Account\RegisterStudent.cshtml" />
     <Content Include="Views\FrontPage\Location.cshtml" />
     <Content Include="Views\Shared\AuthError.cshtml" />
-    <Content Include="Views\Shared\_CourseInfoBox_SignedUp.cshtml" />
     <Content Include="Views\Shared\_CourseInfoBox.cshtml" />
     <Content Include="Views\Utility\_AllCoursesSearchBox.cshtml" />
     <Content Include="Views\Shared\_EditUser.cshtml" />
@@ -302,6 +298,9 @@
     <Content Include="Views\Shared\_AdminMenu.cshtml" />
     <Content Include="Views\Shared\_StudentMenu.cshtml" />
     <Content Include="Views\Shared\_TeacherMenu.cshtml" />
+    <Content Include="Views\Utility\_CoursesFromCurrentUserSignedUp.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -314,7 +313,6 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Students\Models\" />
     <Folder Include="Areas\Students\Views\Shared\" />
-    <Folder Include="Areas\Students\Views\SignUp\" />
     <Folder Include="Areas\Teachers\Models\" />
     <Folder Include="Areas\Teachers\Views\Shared\" />
   </ItemGroup>

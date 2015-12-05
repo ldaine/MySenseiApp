@@ -33,5 +33,23 @@ namespace MySensei.Controllers
             return PartialView(courses);
         }
 
+        // GET: Admin/AdminUtility
+        public ActionResult _CoursesFromCurrentUserSignedUp(string searchString)
+        {
+            var userID = User.Identity.GetUserId();
+            var courses = from c in db.Courses select c;
+
+            var myCourses = db.Courses.Where(c => c.SignUps.Select(x => x.AppUserID).Contains(userID));
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()));
+                //var course = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()) || c => c.Description.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+
+            //  List<AppCourse> something = db.Database.SqlQuery<AppCourse>("select headline from dbo.AppCourses").ToList();
+            return PartialView(myCourses);
+        }
+
     }
 }
