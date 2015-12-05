@@ -10,7 +10,7 @@
         <li>Maximum attendance: @Model.MaxAttendance</li>
     </ul>
     <p>
-        @Html.ActionLink("Details", "Details", new { id = Model.ID })
+        @Html.ActionLink("Details", "Details", "Course", new { area = "", id = Model.ID }, null)
     </p>
 </div>
 

@@ -1,0 +1,27 @@
+﻿
+
+
+
+
+
+
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    @Html.ActionLink("MySensei Student", "Index", "Home", new { area = "Students" }, new { @class = "navbar-brand" })
+</div>
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav  navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", new { area = "Students" }, new { })
+        </li>
+        <li>@Html.ActionLink("Search for Courses", "Index", "Home", new { area = "Students" }, new { })</li>
+        <li>@Html.ActionLink("My Courses", "Index", "Home", new { area = "Students" }, new { })</li>
+        <li>@Html.ActionLink("My Profile", "Index", "User", new { area = "Students" }, new { })</li>
+        <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { })</li>
+
+    </ul>
+</div>

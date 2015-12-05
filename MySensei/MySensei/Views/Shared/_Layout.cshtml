@@ -7,20 +7,33 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <style>
-        .container {
-            padding-top: 10px;
-        }
-        .validation-summary-errors {
-            color: #f00;
-        }
-    </style>
 </head>
-<body class="container">
-    <div class="container">
-        @RenderBody()
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+                    @if (User.IsInRole("Administrators"))
+                    {
+                        @Html.Partial("~/Views/Shared/_AdminMenu.cshtml")
+                    }
+                    else if (User.IsInRole("Student"))
+                    {
+                        @Html.Partial("~/Views/Shared/_StudentMenu.cshtml")
+                    }
+                    else if (User.IsInRole("Teacher"))
+                    {
+                        @Html.Partial("~/Views/Shared/_TeacherMenu.cshtml")
+                    }
+
+        </div>
     </div>
 
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
