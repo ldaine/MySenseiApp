@@ -23,7 +23,7 @@ namespace MySensei.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                return View("Error", new string[] { "Access Denied" });
+                return View("AuthError");
             }
 
             //list out the courses
@@ -74,20 +74,25 @@ namespace MySensei.Controllers
 
                     //return Redirect(returnUrl);
                     //role based start page
-                    //role Employer go to Employer page
-                    if (UserManager.IsInRole(user.Id, "Teacher"))
-                    {
-                        return RedirectToAction("Index", "Teachers/CourseTeacher");
-                    }
                     //role Admin go to Admin page
-                    else if (UserManager.IsInRole(user.Id, "Administrators"))
+                    if (UserManager.IsInRole(user.Id, "Administrators"))
                     {
-                        return RedirectToAction("Index", "Admin/Admin");
+                        return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                    }
+                    //role Teacher go to Teacher page
+                    else if (UserManager.IsInRole(user.Id, "Teacher"))
+                    {
+                        return RedirectToAction("Index", "CourseTeacher", new { area = "Teachers" });
+                    }
+                    //role Student go to Student page
+                    else if (UserManager.IsInRole(user.Id, "Student"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Students" });
                     }
                     else
                     {
                         //no role
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Login", "Account", new { area = "" });
                     }
 
                 }
@@ -112,7 +117,7 @@ namespace MySensei.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account", new { area = "" });
             }
                 
         }
@@ -142,7 +147,7 @@ namespace MySensei.Controllers
 
                     var roleresult = UserManager.AddToRole(currentUser.Id, "Teacher");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = "Teachers" });
                 }
                 else
                 {
@@ -174,7 +179,7 @@ namespace MySensei.Controllers
 
                     var roleresult = UserManager.AddToRole(currentUser.Id, "Student");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = "Students"});
                 }
                 else
                 {
@@ -189,7 +194,7 @@ namespace MySensei.Controllers
         public ActionResult Logout()
         {
             AuthManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "FrontPage", new { area = "" });
         }
 
         private IAuthenticationManager AuthManager

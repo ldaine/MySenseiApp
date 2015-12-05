@@ -11,6 +11,7 @@ using MySensei.Models;
 
 namespace MySensei.Areas.Teachers.Controllers
 {
+    [Authorize(Roles = "Teacher")]
     public class CourseTeacherController : Controller
     {
         private AppIdentityDbContext db = new AppIdentityDbContext();

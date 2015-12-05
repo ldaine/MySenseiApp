@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MySensei.Models.AppCourse>
+
+<h3>All Courses</h3>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by title: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+@foreach (var obj in Model)
+{
+    @Html.Partial("~/Views/Shared/_CourseInfoBox.cshtml", obj);
+}

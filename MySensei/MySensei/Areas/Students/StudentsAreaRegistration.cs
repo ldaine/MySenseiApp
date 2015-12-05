@@ -17,7 +17,8 @@ namespace MySensei.Areas.Students
             context.MapRoute(
                 "Students_default",
                 "Students/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "MySensei.Areas.Students.Controllers" }
             );
         }
     }
