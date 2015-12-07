@@ -7,6 +7,7 @@ namespace MySensei.Models
     // Users
     public class CreateModel
     {
+        public string Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [Required]
@@ -32,6 +33,7 @@ namespace MySensei.Models
     }
     public class UserEditModel
     {
+        public List<string> Roles { get; set; }
         public string ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -71,8 +73,6 @@ namespace MySensei.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
-        public string UserName { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]

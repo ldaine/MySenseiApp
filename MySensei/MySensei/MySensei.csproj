@@ -159,9 +159,9 @@
     <Content Include="Areas\Teachers\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CourseStatusAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CourseStatusAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CourseStatusAdmin\Details.cshtml" />
@@ -204,6 +204,7 @@
     <Content Include="Areas\Teachers\Views\Home\CourseTeacher.cshtml" />
     <Content Include="Areas\Teachers\Views\Home\CourseStudent.cshtml" />
     <Content Include="Areas\Admin\Views\RoleAdmin\EditUsersInRoles.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\banner.jpg" />
@@ -225,7 +226,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourseStatusAdminController.cs" />
@@ -236,7 +238,6 @@
     <Compile Include="Areas\Students\Controllers\UserController.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
     <Compile Include="Areas\Teachers\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Teachers\Controllers\UserController.cs" />
     <Compile Include="Areas\Teachers\TeachersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MySensei.Areas.Teachers.Controllers
+namespace MySensei.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class HomeController : Controller
     {
-        // GET: Teachers/User
+        // GET: Admin/Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "UserAdmin");
         }
     }
 }

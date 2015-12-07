@@ -6,16 +6,18 @@ using MySensei.Models;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MySensei.Areas.Admin.Controllers
 {
 
     // GET: Admin/Admin
     [Authorize(Roles = "Administrators")]
-    public class AdminController : Controller
+    public class UserAdminController : Controller
     {
-        /*  private AppIdentityDbContext db = new AppIdentityDbContext();
-          public ActionResult Index(string sortOrder)
+        private AppIdentityDbContext db = new AppIdentityDbContext();
+        /*    public ActionResult Index(string sortOrder)
           {
               ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
               ViewBag.DateSortParm = sortOrder == "Email" ? "email_desc" : "Email";
@@ -46,6 +48,8 @@ namespace MySensei.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Role = new SelectList(db.Roles, "Name", "Name");
+
             return View();
         }
 
@@ -78,6 +82,9 @@ namespace MySensei.Areas.Admin.Controllers
 
                 if (result.Succeeded)
                 {
+
+
+                    var addedToRole = await UserManager.AddToRoleAsync(user.Id, model.Role);
                     return RedirectToAction("Index");
                 }
                 else
@@ -85,12 +92,13 @@ namespace MySensei.Areas.Admin.Controllers
                     AddErrorsFromResult(result);
                 }
             }
+            ViewBag.Role = new SelectList(db.Roles, "Name", "Name");
+
             return View(model);
         }
 
         // Edit
-        [Authorize(Roles = "Administrators")]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Administrators, Teacher")]
         public async Task<ActionResult> Edit(string id)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
@@ -110,6 +118,14 @@ namespace MySensei.Areas.Admin.Controllers
                     Biography = user.Biography,
                     Birthday = user.Birthday,
                 };
+                
+                //Possibility to add users to roles in User view
+                //editUser.Roles = new List<string>();
+                //foreach (IdentityUserRole role in user.Roles)
+                //{
+                //    editUser.Roles.Add(role.RoleId);
+                //}
+
                 if (user.City != null)
                 {
                     editUser.City = (Cities)System.Enum.Parse(typeof(Cities), user.City);
@@ -123,6 +139,9 @@ namespace MySensei.Areas.Admin.Controllers
                 {
                     editUser.PrimaryLanguage = (Language)System.Enum.Parse(typeof(Language), user.PrimaryLanguage);
                 }
+
+                //ViewBag.Roles = new MultiSelectList(db.Roles, "Id", "Name");
+
                 return View(editUser);
             }
             else
@@ -178,6 +197,37 @@ namespace MySensei.Areas.Admin.Controllers
                     IdentityResult result = await UserManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
+
+                        ////looping through existing role
+                        //foreach (IdentityUserRole role in user.Roles)
+                        //{
+                        //    var name = db.Roles.Find(role.RoleId).Name;
+                        //    if (model.Roles.Contains(name))
+                        //    {
+                        //        model.Roles.Remove(name);
+                        //    }
+                        //    else
+                        //    {
+                        //        result = await UserManager.RemoveFromRoleAsync(user.Id, name);
+                        //        if (!result.Succeeded)
+                        //        {
+                        //            return View("Error", result.Errors);
+                        //        }
+                        //    }
+                        //}
+
+                        //foreach (string role in model.Roles)
+                        //{
+                        //    var roleName = db.Roles.Find(role).Name;
+                        //    var addedToRole = await UserManager.AddToRoleAsync(user.Id, roleName);
+
+                        //    result = await UserManager.AddToRoleAsync(user.Id, roleName);
+                        //    if (!result.Succeeded)
+                        //    {
+                        //        return View("Error", result.Errors);
+                        //    }
+                        //}
+
                         return RedirectToAction("Index");
                     }
                     else
@@ -190,11 +240,12 @@ namespace MySensei.Areas.Admin.Controllers
                     ModelState.AddModelError("", "User Not Found");
                 }
             }
+            //ViewBag.Roles = new MultiSelectList(db.Roles, "Name", "Name");
+
             return View(user);
         }
         // Delete
-        [Authorize(Roles = "Administrators")]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Administrators, Teacher")]
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {

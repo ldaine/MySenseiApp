@@ -134,7 +134,7 @@ namespace MySensei.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    UserName = model.UserName,
+                    UserName = model.Email,
                     Email = model.Email 
                     
                     
@@ -168,7 +168,7 @@ namespace MySensei.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    UserName = model.UserName,
+                    UserName = model.Email,
                     Email = model.Email, 
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
