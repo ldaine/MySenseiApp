@@ -34,12 +34,23 @@ namespace MySensei.Controllers
         }
 
         // GET: Admin/AdminUtility
-        public ActionResult _CoursesFromCurrentUserSignedUp(string searchString)
+        public ActionResult _CoursesFromCurrentUserSignedUp()
         {
             var userID = User.Identity.GetUserId();
             var courses = from c in db.Courses select c;
 
             var myCourses = db.Courses.Where(c => c.SignUps.Select(x => x.AppUserID).Contains(userID));
+
+            return PartialView(myCourses);
+        }
+
+        public ActionResult _CoursesTeachedByCurrentUser(string searchString)
+        {
+            var userID = User.Identity.GetUserId();
+            var courses = from c in db.Courses select c;
+
+            var myCourses = db.Courses.Where(c => c.AppUserID == userID);
+
             if (!string.IsNullOrEmpty(searchString))
             {
                 courses = courses.Where(c => c.Headline.ToUpper().Contains(searchString.ToUpper()));

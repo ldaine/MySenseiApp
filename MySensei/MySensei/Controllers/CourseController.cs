@@ -16,12 +16,14 @@ namespace MySensei.Controllers
     {
         private AppIdentityDbContext db = new AppIdentityDbContext();
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var courses = db.Courses.Include(a => a.AppCategory).Include(a => a.AppCourseStatus).Include(a => a.AppUser);
             return View(courses.ToList());
         }
 
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,6 +37,14 @@ namespace MySensei.Controllers
             }
             return View(appCourse);
         }
+
+        [Authorize(Roles = "Administrators, Teacher")]
+        public ActionResult CurrentUserCourses()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrators,Teacher, Student")]
         public ActionResult SignUpForCourse(int? id)
         {
             if (id == null)
@@ -70,11 +80,8 @@ namespace MySensei.Controllers
             return View(appCourse);
         }
 
-
-        
-
-
         // GET: /Create
+        [Authorize(Roles = "Administrators, Teacher")]
         public ActionResult Create()
         {
             //CreateCourseModel model = new CreateCourseModel();
@@ -93,7 +100,8 @@ namespace MySensei.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCourseModel model, string password)
+        [Authorize(Roles = "Administrators, Teacher")]
+        public ActionResult Create(CreateCourseModel model)
         {
             var userID = User.Identity.GetUserId();
             if (userID == null)
@@ -134,19 +142,28 @@ namespace MySensei.Controllers
                 }
 
                 //saving course in database
-                db.Courses.Add(appCourse);
+                AppCourse newCourse = db.Courses.Add(appCourse);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("Administrators"))
+                {
+                    return RedirectToAction("Index");
+                } else if (User.IsInRole("Teacher"))
+                {
+                    return RedirectToAction("CourseTeacher", "Home", new { area = "Teachers" });
+                }
+                    
             }
 
+            ViewBag.TagID = new MultiSelectList(db.AppTags, "ID", "Tag");
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
-            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FullName", appCourse.AppUserID);
             return View(model);
         }
 
         // GET: Admin/CourseAdmin/Edit/5
+        [Authorize(Roles = "Administrators, Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -184,7 +201,7 @@ namespace MySensei.Controllers
             ViewBag.TagID = new MultiSelectList(db.AppTags, "ID", "Tag");
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
-            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FullName", appCourse.AppUserID);
             return View(model);
         }
 
@@ -197,52 +214,69 @@ namespace MySensei.Controllers
         {
             AppCourse appCourse = db.Courses.Find(model.ID);
 
-            appCourse.AppUserID = model.AppUserID;
-            appCourse.AppCategoryID = model.AppCategoryID;
-            appCourse.AppCourseStatusID = model.AppCourseStatusID;
-            appCourse.Course = model.Course;
-            appCourse.Headline = model.Headline;
-            appCourse.Description = model.Description;
-            appCourse.CourseImage = model.CourseImage;
-            appCourse.Location = model.Location;
-            appCourse.Price = model.Price;
-            appCourse.MaxAttendance = model.MaxAttendance;
-
-            //createing tag list of it doesnt exist
-            if (appCourse.AppTags == null)
+            var userID = User.Identity.GetUserId();
+            if (userID == null)
             {
-                appCourse.AppTags = new List<AppTag>();
+                ModelState.AddModelError("", "The user is not signed in.");
             }
-            //looping through existing tags
-            foreach (AppTag tag in appCourse.AppTags.ToList<AppTag>())
+            if (ModelState.IsValid)
             {
-                //If the new tag list contains tag that already was in the course, remove it from the list. 
-                //else if the new tag list doesnt contain the tag, it must be deleted. 
-                if (model.TagIDs.Contains(tag.ID))
+                if (UserManager.IsInRole(userID, "Administrators"))
                 {
-                    model.TagIDs.Remove(tag.ID);
+                    appCourse.AppUserID = model.AppUserID;
                 }
                 else
                 {
-                    appCourse.AppTags.Remove(tag);
+                    appCourse.AppUserID = userID;
+                }
+
+                appCourse.AppCategoryID = model.AppCategoryID;
+                appCourse.AppCourseStatusID = model.AppCourseStatusID;
+                appCourse.Course = model.Course;
+                appCourse.Headline = model.Headline;
+                appCourse.Description = model.Description;
+                appCourse.CourseImage = model.CourseImage;
+                appCourse.Location = model.Location;
+                appCourse.Price = model.Price;
+                appCourse.MaxAttendance = model.MaxAttendance;
+
+                //createing tag list of it doesnt exist
+                if (appCourse.AppTags == null)
+                {
+                    appCourse.AppTags = new List<AppTag>();
+                }
+                //looping through existing tags
+                foreach (AppTag tag in appCourse.AppTags.ToList<AppTag>())
+                {
+                    //If the new tag list contains tag that already was in the course, remove it from the list. 
+                    //else if the new tag list doesnt contain the tag, it must be deleted. 
+                    if (model.TagIDs.Contains(tag.ID))
+                    {
+                        model.TagIDs.Remove(tag.ID);
+                    }
+                    else
+                    {
+                        appCourse.AppTags.Remove(tag);
+                    }
+                }
+
+                //Add tags that are newly added 
+                //(the tags that exist in the model before editing were removed from the list in previous loop)
+                foreach (int id in model.TagIDs)
+                {
+                    AppTag tag = db.AppTags.Where(x => x.ID == id).FirstOrDefault();
+                    appCourse.AppTags.Add(tag);
+                }
+
+                //If the model is valid, save changes. 
+                if (ModelState.IsValid)
+                {
+                    db.Entry(appCourse).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
             }
-
-            //Add tags that are newly added 
-            //(the tags that exist in the model before editing were removed from the list in previous loop)
-            foreach (int id in model.TagIDs)
-            {
-                AppTag tag = db.AppTags.Where(x => x.ID == id).FirstOrDefault();
-                appCourse.AppTags.Add(tag);
-            }
-
-            //If the model is valid, save changes. 
-            if (ModelState.IsValid)
-            {
-                db.Entry(appCourse).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            ViewBag.TagID = new MultiSelectList(db.AppTags, "ID", "Tag");
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
             ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
@@ -250,6 +284,7 @@ namespace MySensei.Controllers
         }
 
         // GET: Admin/CourseAdmin/Delete/5
+        [Authorize(Roles = "Administrators, Teacher")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

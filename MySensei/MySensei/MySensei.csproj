@@ -157,11 +157,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Teachers\Views\web.config" />
     <Content Include="Areas\Teachers\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Teachers\Views\CourseTeacher\Index.cshtml" />
-    <Content Include="Areas\Teachers\Views\CourseTeacher\Details.cshtml" />
-    <Content Include="Areas\Teachers\Views\CourseTeacher\Create.cshtml" />
-    <Content Include="Areas\Teachers\Views\CourseTeacher\Edit.cshtml" />
-    <Content Include="Areas\Teachers\Views\CourseTeacher\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
@@ -206,6 +201,9 @@
     <Content Include="App_Code\Helpers.cshtml" />
     <Content Include="Areas\Students\Views\User\Index.cshtml" />
     <Content Include="Areas\Students\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Teachers\Views\Home\CourseTeacher.cshtml" />
+    <Content Include="Areas\Teachers\Views\Home\CourseStudent.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleAdmin\EditUsersInRoles.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\banner.jpg" />
@@ -237,12 +235,13 @@
     <Compile Include="Areas\Students\Controllers\HomeController.cs" />
     <Compile Include="Areas\Students\Controllers\UserController.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
-    <Compile Include="Areas\Teachers\Controllers\CourseTeacherController.cs" />
     <Compile Include="Areas\Teachers\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Teachers\Controllers\UserController.cs" />
     <Compile Include="Areas\Teachers\TeachersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\FrontPageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -301,6 +300,11 @@
     <Content Include="Views\Utility\_CoursesFromCurrentUserSignedUp.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Utility\_CoursesTeachedByCurrentUser.cshtml" />
+    <Content Include="Views\Course\Delete.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -315,6 +319,7 @@
     <Folder Include="Areas\Students\Views\Shared\" />
     <Folder Include="Areas\Teachers\Models\" />
     <Folder Include="Areas\Teachers\Views\Shared\" />
+    <Folder Include="Areas\Teachers\Views\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

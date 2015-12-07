@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using MySensei.Infrastructure;
 using MySensei.Models;
+using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace MySensei.Areas.Admin.Controllers
 {
@@ -124,5 +127,63 @@ namespace MySensei.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+        public async Task<ActionResult> EditUsersInRoles(string id)
+        {
+            AppRole role = await RoleManager.FindByIdAsync(id);
+            string[] memberIDs = role.Users.Select(x => x.UserId).ToArray();
+            IEnumerable<AppUser> members = UserManager.Users.Where(x => memberIDs.Any(y => y == x.Id));
+            IEnumerable<AppUser> nonMembers = UserManager.Users.Except(members);
+            return View(new RoleEditModel
+            {
+                Role = role,
+                Members = members,
+                NonMembers = nonMembers
+            });
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> EditUsersInRoles(RoleModificationModel model)
+        {
+            IdentityResult result;
+            if (ModelState.IsValid)
+            {
+                foreach (string userId in model.IdsToAdd ?? new string[] { })
+                {
+                    result = await UserManager.AddToRoleAsync(userId, model.RoleName);
+                    if (!result.Succeeded)
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+                foreach (string userId in model.IdsToDelete ?? new string[] { })
+                {
+                    result = await UserManager.RemoveFromRoleAsync(userId, model.RoleName);
+                    if (!result.Succeeded)
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            return View("Error", new string[] { "Role Not Found" });
+        }
+
+
+        private AppUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+        private AppRoleManager RoleManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppRoleManager>();
+            }
+        }
+
     }
 }

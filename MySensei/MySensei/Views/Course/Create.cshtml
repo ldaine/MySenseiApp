@@ -14,6 +14,8 @@
         <h4>AppCourse</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @if (User.IsInRole("Administrators")) { 
         <div class="form-group">
             @Html.LabelFor(model => model.AppUserID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -22,6 +24,7 @@
                 @Html.ValidationMessageFor(model => model.AppUserID, "", new { @class = "text-danger" })
             </div>
         </div>
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.AppCategoryID, htmlAttributes: new { @class = "control-label col-md-2" })

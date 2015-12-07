@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MySensei.Models.AppCourse>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>You are signed up in</h1>
+@Html.Action("_CoursesFromCurrentUserSignedUp", "Utility", new { area = "" });
+
+
+

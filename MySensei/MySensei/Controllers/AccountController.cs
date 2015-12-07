@@ -82,7 +82,7 @@ namespace MySensei.Controllers
                     //role Teacher go to Teacher page
                     else if (UserManager.IsInRole(user.Id, "Teacher"))
                     {
-                        return RedirectToAction("Index", "CourseTeacher", new { area = "Teachers" });
+                        return RedirectToAction("Index", "Home", new { area = "Teachers" });
                     }
                     //role Student go to Student page
                     else if (UserManager.IsInRole(user.Id, "Student"))

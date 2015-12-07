@@ -1,104 +1,37 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using MySensei.Infrastructure;
 using MySensei.Models;
-using Microsoft.AspNet.Identity;
-using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
-namespace MySensei.Areas.Admin.Controllers
+namespace MySensei.Controllers
 {
-
-    // GET: Admin/Admin
-    [Authorize(Roles = "Administrators")]
-    public class AdminController : Controller
+    public class UserController : Controller
     {
-        /*  private AppIdentityDbContext db = new AppIdentityDbContext();
-          public ActionResult Index(string sortOrder)
-          {
-              ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-              ViewBag.DateSortParm = sortOrder == "Email" ? "email_desc" : "Email";
-              var userss = from s in db.Database.SqlQuery<AppUser>("select * from dbo.AppUser") select s;
-              switch (sortOrder)
-              {
-                  case "name_desc":
-                      userss = userss.OrderByDescending(s => s.UserName);
-                      break;
-                  case "Email":
-                      userss = userss.OrderBy(s => s.Email);
-                      break;
-                  case "email_desc":
-                      userss = userss.OrderByDescending(s => s.Email);
-                      break;
-                  default:
-                      userss = userss.OrderBy(s => s.UserName);
-                      break;
-              }
-              return View(UserManager.Users);
-          }  */
-
+        // GET: Students/User
         public ActionResult Index()
         {
-            return View(UserManager.Users);
-        }
 
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-
-
-        // Create
-        [HttpPost]
-        public async Task<ActionResult> Create(CreateModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                AppUser user = new AppUser
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    UserName = model.UserName,
-                    Email = model.Email,
-                    Address = model.Address,
-                    Zip = model.Zip,
-                    City = model.City.ToString(),
-                    Country = "Danmark",
-                    Avatar = model.Avatar,
-                    Gender = model.Gender.ToString(),
-                    Biography = model.Biography,
-                    Birthday = model.Birthday,
-                    PrimaryLanguage = model.PrimaryLanguage.ToString(),
-                    CreatedAt = DateTime.Now
-                };
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    AddErrorsFromResult(result);
-                }
-            }
-            return View(model);
+            var UserId = User.Identity.GetUserId();
+            AppUser user = UserManager.FindById(UserId);
+            return View(user);
         }
 
         // Edit
-        [Authorize(Roles = "Administrators")]
-        [Authorize(Roles = "Teacher")]
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit()
         {
-            AppUser user = await UserManager.FindByIdAsync(id);
+            var UserId = User.Identity.GetUserId();
+            AppUser user = await UserManager.FindByIdAsync(UserId);
             if (user != null)
             {
                 UserEditModel editUser = new UserEditModel
                 {
-                    ID = id,
+                    ID = UserId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
@@ -190,33 +123,11 @@ namespace MySensei.Areas.Admin.Controllers
                     ModelState.AddModelError("", "User Not Found");
                 }
             }
-            return View(user);
-        }
-        // Delete
-        [Authorize(Roles = "Administrators")]
-        [Authorize(Roles = "Teacher")]
-        [HttpPost]
-        public async Task<ActionResult> Delete(string id)
-        {
-            AppUser user = await UserManager.FindByIdAsync(id);
-            if (user != null)
-            {
-                IdentityResult result = await UserManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View("Error", result.Errors);
-                }
-            }
-            else
-            {
-                return View("Error", new string[] { "User Not Found" });
-            }
+            return View(model);
         }
 
+
+        //Helpers
         private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)

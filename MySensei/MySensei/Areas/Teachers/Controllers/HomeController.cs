@@ -21,6 +21,16 @@ namespace MySensei.Areas.Teachers.Controllers
             return View();
         }
 
+        public ViewResult CourseTeacher(string searchString)
+        {
+            return View();
+        }
+
+        public ViewResult CourseStudent(string searchString)
+        {
+            return View();
+        }
+
 
         public ActionResult Categories(int? ids)
         {

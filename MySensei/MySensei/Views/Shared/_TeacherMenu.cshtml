@@ -19,6 +19,10 @@
             @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", new { area = "Teachers" }, new { })
         </li>
         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "Teachers" }, new { })</li>
+        <li>@Html.ActionLink("Your Courses", "CourseTeacher", "Home", new { area = "Teachers" }, new { })</li>
+        <li>@Html.ActionLink("You are signed up in ", "CourseStudent", "Home", new { area = "Teachers" }, new { })</li>
+        <li>@Html.ActionLink("All Courses", "Index", "Course", new { area = "" }, new { })</li>
+        <li>@Html.ActionLink("My Profile", "Index", "User", new { area = "" }, new { })</li>
         <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { })</li>
 
     </ul>
