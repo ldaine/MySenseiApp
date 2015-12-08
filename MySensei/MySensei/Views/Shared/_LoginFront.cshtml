@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    @*<link href="~/Content/reset.css" rel="stylesheet" />*@
     <link href="~/Content/LoginFront.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
     <style>
         .container {
             padding-top: 10px;
@@ -17,16 +19,24 @@
     </style>
 </head>
 <body>
+
     <div class="wrapper">
+        <nav class="nav">
+            <div id="logo"><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></div>
+            <ul class="nav-list">
+                <li class="nav-item">s</li>
+                <li class="nav-item"><a href="#">Subjects</a></li>
+                <li class="nav-item"><a href="#">How it works</a></li>
+                <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
+            </ul>
+            @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
+        </nav>
         <div class="container">
             <h1>Welcome!</h1>
             @RenderBody()
 
         </div>
     </div>
-    @RenderSection("price", false)
-
-
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://teaching-materials.org/ajax/lib/jquery.min.js"></script>

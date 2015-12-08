@@ -15,11 +15,16 @@
         <p>Description: @thing.Description</p>
         <p>Location: @thing.Location</p>
         <p>Price: @thing.Price dkk/h</p>
-        @*@if (thing.Location == "Copenhagen")
-            {
-                <p>This is it</p>
-            }*@
-
     </div>
+
 }
+@if (ViewBag.Local == null)
+            {
+    <p>This is it</p>
+}
+else
+{
+    <p>no</p>
+}
+
 
