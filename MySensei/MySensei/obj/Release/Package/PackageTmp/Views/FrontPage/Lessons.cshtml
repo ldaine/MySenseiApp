@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MySensei.Models.AppCourse>
+
+@{
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
+}
+@{ ViewBag.Title = "MySensei | Lessons!";}
+
+<nav class="nav">
+    <div id="logo"><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></div>
+    <ul class="nav-list">
+        <li class="nav-item">s</li>
+        <li class="nav-item"><a href="#">Subjects</a></li>
+        <li class="nav-item"><a href="#">How it works</a></li>
+        <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
+    </ul>
+    @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
+</nav>
+<div class="wrapper les">
+    <div class="search-box">
+        <div id="search_bar.les">
+            @using (Html.BeginForm("Lessons", "FrontPage"))
+            {
+                <p class="name">
+                    @Html.TextBox("searchString", "Search Lessons", new { @class = "feedback-input" })
+                    <input type="submit" value="Search" id="button-blue" />
+                </p>
+            }
+        </div>
+
+    </div>
+</div>
+
+<div class="dropdowns">
+    something
+</div>
+<div class="title"><h1>Lessons</h1></div>
+<div class="courses-cont">
+    
+    @foreach (var obj in Model)
+    {
+        <div class="courses">
+            
+            @if (obj.AppUser.Avatar != null)
+                {
+                <img src="@obj.AppUser.Avatar" />
+            }
+            else
+            {
+                <div class="circular"> </div>
+            }
+            <div class="description">
+                <h2><b>@obj.Headline</b></h2>
+                <p style="color: #47b7b7"> @obj.AppUser.FullName</p>
+                    <p>Description: @obj.Description</p>
+                    <p>Location: @obj.Location</p>
+                    <p>Category: @obj.AppCategory.Category</p>
+                    <p>Maximum attendance: @obj.MaxAttendance</p>
+                @Html.ActionLink("Read More", "Details", new { id = obj.ID })
+            </div>
+            <div class="price">
+                <p>Pricing: @obj.Price kr/h</p>
+                Rating: 
+                <div class="rating">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <h2>@Html.ActionLink("Sign up", "Lessons", null, new { @class = "button-link" })</h2>
+                @*@if (obj.CourseImage != null)
+                {
+                    <li><img src="@obj.CourseImage" width="150" height="150" /></li>
+                }*@
+            </div>
+
+        </div>
+    }
+</div>
+
+
+
+@*<div style="color: black;">
+<h2>Music</h2>
+@foreach (var obj in Model)
+{
+    if (obj.AppCategory.ID == 1)
+    {
+        <div class="courses">
+            @if (obj.AppUser.Avatar != null)
+            {
+                <img src="@obj.AppUser.Avatar" />
+            }
+            else
+            {
+                <div class="circular"> </div>
+            }
+            <div class="description">
+                <h2><b>@obj.Headline</b></h2>
+                <p>Teacher: @obj.AppUser.FullName</p>
+                <p>Description: @obj.Description</p>
+                <p>Location: @obj.Location</p>
+                <p>Price: @obj.Price dkk</p>
+                <p>Maximum attendance: @obj.MaxAttendance</p>
+                @Html.ActionLink("Read More", "Details", new { id = obj.ID })
+            </div>
+            <div class="price">
+                <p>Pricing: @obj.Price</p>
+                Rating:
+                <div class="rating">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <h2>@Html.ActionLink("Sign up", "Lessons", null, new { @class = "button-link" })</h2>
+            </div>
+        </div>
+    }
+}
+</div>*@

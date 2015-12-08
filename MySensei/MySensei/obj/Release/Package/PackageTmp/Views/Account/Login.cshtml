@@ -1,0 +1,36 @@
+﻿@model MySensei.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_LoginFront.cshtml";
+}
+@{ ViewBag.Title = "Login";}
+<h1>Welcome!</h1>
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+        <legend>Log In:</legend>
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        <div class="form-group">
+            <label>Name</label>
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+        <p>Remember me | Forgot password?</p>
+    </fieldset>
+}
+        <h2>If you don't have an account, sign up!</h2>
+        <p>
+            Sign up as a @Html.ActionLink("Student",
+                     "Register",
+                     new { role = "student" }) | 
+            Sign up as a @Html.ActionLink("Teacher",
+                     "Register",
+                     new { role = "teacher" })
+        </p>
+

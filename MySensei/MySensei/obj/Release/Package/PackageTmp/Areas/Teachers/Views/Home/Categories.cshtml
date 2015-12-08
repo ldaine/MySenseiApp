@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MySensei.Models.AppCourse>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Categories</h2>
+
+
+
+@foreach (var thing in ViewBag.Appp)
+{
+    <p>@thing.Headline</p>
+}

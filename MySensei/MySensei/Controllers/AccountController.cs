@@ -18,6 +18,13 @@ namespace MySensei.Controllers
     public class AccountController : Controller
     {
         private AppIdentityDbContext db = new AppIdentityDbContext();
+
+        [AllowAnonymous]
+        public ActionResult index()
+        {
+            return View("Login");
+        }
+
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {

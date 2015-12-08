@@ -137,6 +137,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MySenseiDb.mdf" />
+    <Content Include="App_Data\MySenseiDb_log.ldf">
+      <DependentUpon>MySenseiDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -146,6 +150,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\LoginFront.css" />
     <Content Include="Content\AdminStyle.css" />
+    <Content Include="Content\tempStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -328,7 +333,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Students\Models\" />
@@ -336,6 +340,8 @@
     <Folder Include="Areas\Teachers\Models\" />
     <Folder Include="Areas\Teachers\Views\Shared\" />
     <Folder Include="Areas\Teachers\Views\User\" />
+    <Folder Include="Content\css\" />
+    <Folder Include="Content\sass\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

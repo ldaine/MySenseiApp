@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @*<link href="~/Content/reset.css" rel="stylesheet" />*@
+    <link href="~/Content/FrontPage.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <style>
+        .container {
+            padding-top: 10px;
+        }
+
+        .validation-summary-errors {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+            @RenderBody()
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://teaching-materials.org/ajax/lib/jquery.min.js"></script>
+    @*<script>
+var mouseY = 0;
+
+document.addEventListener('mousemove', function(e) {
+  mouseY = e.clientY || e.pageY;
+  if(mouseY < 70) {
+     $('nav').css({ top: '0' });
+  }
+}, false);
+
+$(window).scroll(function() {
+  var sc = ($(this).scrollTop() > 70) ? $('nav').css({ top: '-70px' }) : $('nav').css({ top: '0' });
+});
+
+$('nav').mouseout(function() {
+  if($(window).scrollTop() > 70) {
+     $('nav').css({ top: '-70px' });
+  }
+});
+    </script>*@
+
+    <script>
+		(function () {
+
+		    // Create mobile element
+		    var mobile = document.createElement('div');
+		    mobile.className = 'nav-mobile';
+		    document.querySelector('.nav').appendChild(mobile);
+
+		    // hasClass
+		    function hasClass(elem, className) {
+		        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+		    }
+
+		    // toggleClass
+		    function toggleClass(elem, className) {
+		        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
+		        if (hasClass(elem, className)) {
+		            while (newClass.indexOf(' ' + className + ' ') >= 0) {
+		                newClass = newClass.replace(' ' + className + ' ', ' ');
+		            }
+		            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+		        } else {
+		            elem.className += ' ' + className;
+		        }
+		    }
+
+		    // Mobile nav function
+		    var mobileNav = document.querySelector('.nav-mobile');
+		    var toggle = document.querySelector('.nav-list');
+		    mobileNav.onclick = function () {
+		        toggleClass(this, 'nav-mobile-open');
+		        toggleClass(toggle, 'nav-active');
+		    };
+
+		    $(document).ready(function () {
+
+		        $(".category-box").click(function () {
+		            window.location = $(this).find("a").attr("href"); return false;
+		        });
+		        $('.category-box').hover(
+                       function () { $(this).find("a").css('color', '#47b7b7'); },
+                       function () { $(this).find("a").css('color', '#fff');
+                       });
+		        });
+		})();
+    </script>
+</body>
+</html>
