@@ -3,40 +3,32 @@
     Layout = "~/Views/Shared/_LoginFront.cshtml";
 }
 @{ ViewBag.Title = "Login";}
-<h2>Log In</h2>
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken();
-    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
-    <div class="form-group">
-        <label>Name</label>
-        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-    </div>
-    <button class="btn btn-primary" type="submit">Log In</button>
-    
+
+    <fieldset>
+        <legend>Log In:</legend>
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        <div class="form-group">
+            <label>Name</label>
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </fieldset>
 }
-<p>
-    @Html.ActionLink("Register as a Student",
+        <h2>If you don't have an account, sign up!</h2>
+        <p>
+            Sign up as a @Html.ActionLink("Student",
                      "Register",
-                     new { role = "student" })
-</p>
-<p>
-    @Html.ActionLink("Register as a Teacher",
+                     new { role = "student" }) | 
+            Sign up as a @Html.ActionLink("Teacher",
                      "Register",
                      new { role = "teacher" })
-</p>
-<p><a href="#">Continue as guest</a></p>
-    <nav>
-        <ul>
-            <li><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei"/></li>        
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-        </ul>
-    </nav>
+        </p>
+

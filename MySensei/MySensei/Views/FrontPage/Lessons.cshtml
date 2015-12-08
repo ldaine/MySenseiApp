@@ -15,6 +15,10 @@
             <li>Location: @obj.Location</li>
             <li>Price: @obj.Price dkk</li>
             <li>Maximum attendance: @obj.MaxAttendance</li>
+            @if (obj.CourseImage != null)
+            {
+                <li><img src="@obj.CourseImage" width="150" height="150" /></li>
+            }
         </ul>
         @Html.ActionLink("Details", "Details", new { id = obj.ID })
     </div>

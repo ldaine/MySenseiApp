@@ -4,82 +4,86 @@
 }
 @{ ViewBag.Title = "MySensei | Learn what you want to!";}
 
-<nav>
-    <ul>
-        <li><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <div style="float:right; padding: 5px; display:inline">@Html.ActionLink("Log In", "Login", "Account")</div>
-
-    </ul>
+<nav class="nav">
+    <div id="logo"><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></div>
+  <ul class="nav-list">
+    <li class="nav-item">s</li>
+    <li class="nav-item"><a href="#">Subjects</a></li>
+    <li class="nav-item"><a href="#">How it works</a></li>
+    <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
+  </ul>
+    @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
 </nav>
-<div class="wrapper">
 
+<div class="wrapper">
+    <h1>Learn what you want to!</h1>
+    <h2>With MySENSEI find the best teacher <br /> and start your lesson</h2>
 </div>
-<div class="search" style="display: inline-block">
-    @using (Html.BeginForm("Lessons", "FrontPage"))
-    {
-        <p>
-            Search: @Html.TextBox("searchString")
-            <input type="submit" value="Search" />
-        </p>
-    }
-    @using (Html.BeginForm("Location", "FrontPage"))
-    {
-        <div>
-            @Html.LabelFor(x => x.City)
-            @Html.EnumDropDownListFor(x => x.City, "Select")
-            <button type="submit">find</button>
+<div class="search">
+    <div class="search-box">
+    <div id="search_bar">
+        @using (Html.BeginForm("Lessons", "FrontPage"))
+        {
+            <p class="name">
+                @Html.TextBox("searchString", "Search Lessons", new { @class = "feedback-input" })
+                <input type="submit" value="Search" id="button-blue"/>
+            </p>
+        }
+    </div>
+
+    <div id="search_bar">
+        @using (Html.BeginForm("Location", "FrontPage"))
+        {
+            <div class="ddl">
+                @Html.EnumDropDownListFor(x => x.City, "--Select Location--")
+                <button type="submit" id="button-blue">find</button>
+            </div>
+            @*@Html.DropDownListFor(x => x.Cities, (IEnumerable<SelectListItem>)(ViewBag.Location))*@
+        }
+    </div>
         </div>
-        @*@Html.DropDownListFor(x => x.Cities, (IEnumerable<SelectListItem>)(ViewBag.Location))*@
-    }
 </div>
 <div class="categories">
-    <div class="category-box">
+    <div class="category-text">
+        <h1>There always something to learn</h1>
+        <h2>Explore and choose on of your lessons</h2>
+    </div>
+    <div class="category-box sport">
         @Html.ActionLink("Sport", "Categories", new { ids = 2 })
     </div>
-    <div class="category-box">
+    <div class="category-box music">
         @Html.ActionLink("Music", "Categories", new { ids = 1 })
     </div>
-    <div class="category-box">
+    <div class="category-box arts">
         @Html.ActionLink("Arts & Crafts", "Categories", new { ids = 3 })
     </div>
-    <div class="category-box">
+    <div class="category-box school">
         @Html.ActionLink("School", "Categories", new { ids = 4 })
     </div>
-    <div class="category-box">
-        Computer skills
+    <div class="category-box computer">
+        @Html.ActionLink("Computer Skills", "Categories", new { ids = 7 })
     </div>
-    <div class="category-box">
-        Languages
+    <div class="category-box languages">
+        @Html.ActionLink("Languages", "Categories", new { ids = 9 })
     </div>
-    <div class="category-box">
-        Travel
+    <div class="category-box travel">
+        @Html.ActionLink("Travel", "Categories", new { ids = 8 })
     </div>
-    <div class="category-box">
-        Cooking
+    <div class="category-box cooking">
+        @Html.ActionLink("Cooking", "Categories", new { ids = 5 })
     </div>
-    <div class="category-box">
-        Economics & Finance
+    <div class="category-box ecocomics">
+        @Html.ActionLink("Economics & Finance", "Categories", new { ids = 6 })
     </div>
-    <h2>@Html.ActionLink("All Lessons", "Lessons")</h2>
-    <div>
-
-        @*@foreach (var stuff in ViewBag.Appcourses)
-            {
-
-                <div style="width: 300px; height: 150px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px; color: black;">
-                    <p>Headline: @stuff.Headline </p>
-                    <p>Description: @stuff.Description </p>
-                </div>
-            }*@
+    <div class="category-text">
+        <h2>@Html.ActionLink("All Lessons", "Lessons", null,  new { @class = "button-link" })</h2>
     </div>
 </div>
 <div class="introduction">
     <h1>We are ready to help you become a Sensei</h1>
     <h2>Become a member of MySensei society: Get the most exerienced tutors, learn new things and share them with others.</h2>
+    <div class="intro-left">hi</div>
+    <div class="intro-right">hi</div>
 </div>
 <div class="teacher">
     <h2>Want to become a teacher of MySensei, and share you knowledge with others? Feel free to join our community</h2>
@@ -87,5 +91,33 @@
 <footer>
     <h1>MySensei</h1>
     <h2>We care what do you think!</h2>
-</footer>
 
+    <section class="widget links">
+        <h3>Contact Us</h3>
+        <ul>
+            <li><a href="#"><span class="label">Twitter</span></a></li>
+            <li><a href="#"><span class="label">Facebook</span></a></li>
+            <li><a href="#"><span class="label">Instagram</span></a></li>
+            <li><a href="#"><span class="label">Dribbble</span></a></li>
+            <li><a href="#"><span class="label">Pinterest</span></a></li>
+        </ul>
+    </section>
+
+    <section class="widget contact last">
+        <h3>Contact Us</h3>
+        <ul>
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+        </ul>
+        <p>
+            xy Skanderborgvej<br />
+            Viby J, 8260<br />
+            (800) 555-0000
+        </p>
+    </section>
+
+</footer>
+<div class="copyright">Project created by: Liga | Mathias | Darius | Balázs</div>
