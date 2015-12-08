@@ -1,20 +1,47 @@
 ﻿@model IEnumerable<MySensei.Models.AppCourse>
 
 @{
-    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
 }
+@{ ViewBag.Title = "MySensei | Lessons";}
 
-<h2>@ViewBag.CategName.Category</h2>
+<nav class="nav">
+    <div id="logo"><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></div>
+    <ul class="nav-list">
+        <li class="nav-item">s</li>
+        <li class="nav-item"><a href="#">Subjects</a></li>
+        <li class="nav-item"><a href="#">How it works</a></li>
+        <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
+    </ul>
+    @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
+</nav>
+<div class="wrapper les">
+    <div class="search-box">
+        <div id="search_bar.les">
+            @using (Html.BeginForm("Lessons", "FrontPage"))
+            {
+                <p class="name">
+                    @Html.TextBox("searchString", "Search Lessons", new { @class = "feedback-input" })
+                    <input type="submit" value="Search" id="button-blue" />
+                </p>
+            }
+        </div>
 
-
-<div style="display: flex;">
-@foreach (var thing in ViewBag.Categ)
-{
-    <div style="width: 250px; height: 200px; border: 1px solid black; display: inline-block; margin: 5px; padding: 5px;">
-        <h3>@thing.Headline</h3>
-        <p>Description: @thing.Description</p>
-        <p>Location: @thing.Location</p>
-        <p>Price: @thing.Price dkk/h</p>
     </div>
-}
+</div>
+<div class="dropdowns">
+    something
+</div>
+<div class="title"><h1>@ViewBag.CategName.Category</h1></div>
+
+<div class="courses-cont">
+    @foreach (var thing in ViewBag.Categ)
+    {
+        <div style="width: 250px; height: 200px; border: 1px solid black; display: inline-block; margin: 5px; padding: 5px;">
+            <h3>@thing.Headline</h3>
+            <p>Description: @thing.Description</p>
+            <p>Location: @thing.Location</p>
+            <p>Price: @thing.Price dkk/h</p>
+        </div>
+    }
 </div>

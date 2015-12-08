@@ -1,6 +1,9 @@
 ﻿@model MySensei.Models.RegisterModel
 @{ ViewBag.Title = "Register User";}
-
+@{
+    Layout = "~/Views/Shared/_LoginFront.cshtml";
+}
+<h1>Welcome, guest!</h1>
 <h4>Create a new account as a Techer.</h4>
 @Html.ValidationSummary(false)
 @using (Html.BeginForm("RegisterTeacher", "Account"))
@@ -23,6 +26,6 @@
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
     </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="button-blue">Register</button>
     @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
 }

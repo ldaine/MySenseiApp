@@ -1,127 +1,114 @@
 ﻿@model IEnumerable<MySensei.Models.AppCourse>
 
 @{
-    ViewBag.Title = "Lessons";
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
 }
+@{ ViewBag.Title = "MySensei | Lessons!";}
 
-<h2>Lessons</h2>
+<nav class="nav">
+    <div id="logo"><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></div>
+    <ul class="nav-list">
+        <li class="nav-item">s</li>
+        <li class="nav-item"><a href="#">Subjects</a></li>
+        <li class="nav-item"><a href="#">How it works</a></li>
+        <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
+    </ul>
+    @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
+</nav>
+<div class="wrapper les">
+    <div class="search-box">
+        <div id="search_bar.les">
+            @using (Html.BeginForm("Lessons", "FrontPage"))
+            {
+                <p class="name">
+                    @Html.TextBox("searchString", "Search Lessons", new { @class = "feedback-input" })
+                    <input type="submit" value="Search" id="button-blue" />
+                </p>
+            }
+        </div>
 
+    </div>
+</div>
+
+<div class="dropdowns">
+    something
+</div>
+<div class="title"><h1>Lessons</h1></div>
+<div class="courses-cont">
+    
+    @foreach (var obj in Model)
+    {
+        <div class="courses">
+            
+            @if (obj.AppUser.Avatar != null)
+                {
+                <img src="@obj.AppUser.Avatar" />
+            }
+            else
+            {
+                <div class="circular"> </div>
+            }
+            <div class="description">
+                <h2><b>@obj.Headline</b></h2>
+                <p style="color: #47b7b7"> @obj.AppUser.FullName</p>
+                    <p>Description: @obj.Description</p>
+                    <p>Location: @obj.Location</p>
+                    <p>Category: @obj.AppCategory.Category</p>
+                    <p>Maximum attendance: @obj.MaxAttendance</p>
+                @Html.ActionLink("Read More", "Details", new { id = obj.ID })
+            </div>
+            <div class="price">
+                <p>Pricing: @obj.Price kr/h</p>
+                Rating: 
+                <div class="rating">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <h2>@Html.ActionLink("Sign up", "Lessons", null, new { @class = "button-link" })</h2>
+                @*@if (obj.CourseImage != null)
+                {
+                    <li><img src="@obj.CourseImage" width="150" height="150" /></li>
+                }*@
+            </div>
+
+        </div>
+    }
+</div>
+
+
+
+@*<div style="color: black;">
+<h2>Music</h2>
 @foreach (var obj in Model)
 {
-    <div style="width: 300px; height: 250px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px;">
-        <h3>@obj.Headline</h3>
-        <ul>
-            <li>Description: @obj.Description</li>
-            <li>Location: @obj.Location</li>
-            <li>Price: @obj.Price dkk</li>
-            <li>Maximum attendance: @obj.MaxAttendance</li>
-            @if (obj.CourseImage != null)
+    if (obj.AppCategory.ID == 1)
+    {
+        <div class="courses">
+            @if (obj.AppUser.Avatar != null)
             {
-                <li><img src="@obj.CourseImage" width="150" height="150" /></li>
+                <img src="@obj.AppUser.Avatar" />
             }
-        </ul>
-        @Html.ActionLink("Details", "Details", new { id = obj.ID })
-    </div>
+            else
+            {
+                <div class="circular"> </div>
+            }
+            <div class="description">
+                <h2><b>@obj.Headline</b></h2>
+                <p>Teacher: @obj.AppUser.FullName</p>
+                <p>Description: @obj.Description</p>
+                <p>Location: @obj.Location</p>
+                <p>Price: @obj.Price dkk</p>
+                <p>Maximum attendance: @obj.MaxAttendance</p>
+                @Html.ActionLink("Read More", "Details", new { id = obj.ID })
+            </div>
+            <div class="price">
+                <p>Pricing: @obj.Price</p>
+                Rating:
+                <div class="rating">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <h2>@Html.ActionLink("Sign up", "Lessons", null, new { @class = "button-link" })</h2>
+            </div>
+        </div>
+    }
 }
-@*<div>
-        <h4>AppCourse</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.AppCategory.Category)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AppCategory.Category)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.AppCourseStatus.Status)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AppCourseStatus.Status)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.AppUser.FirstName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AppUser.FirstName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Course)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Course)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Headline)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Headline)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CourseImage)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CourseImage)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CreatedAt)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Location)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Location)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Rating)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Rating)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.MaxAttendance)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.MaxAttendance)
-            </dd>
-
-        </dl>
-    </div>*@
+</div>*@

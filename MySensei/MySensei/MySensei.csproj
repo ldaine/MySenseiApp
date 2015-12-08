@@ -210,6 +210,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\ableskiver.jpg" />
+    <Content Include="img\avatar.jpg" />
     <Content Include="img\balazs_profil.jpg" />
     <Content Include="img\banner.jpg" />
     <Content Include="img\categories\arts.jpg" />
