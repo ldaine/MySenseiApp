@@ -4,7 +4,7 @@
 }
 @{ ViewBag.Title = "MySensei | Learn what you want to!";}
 
-@Html.Partial("~/Views/Shared/_FrontPageNav.cshtml");
+@Html.Partial("~/Views/Shared/_FrontPageNav.cshtml")
 
 <div class="wrapper">
     <h1>Learn what you want to!</h1>
@@ -70,27 +70,56 @@
         <h2>@Html.ActionLink("All Lessons", "Lessons", null,  new { @class = "button-link" })</h2>
     </div>
 </div>
-<div class="introduction" id="introduction" style="margin-top:15%">
-    <h1>We are ready to help you become a Sensei</h1>
-    <h2>Become a member of MySensei society: Get the most exerienced tutors, learn new things and share them with others.</h2>
-    <div class="intro-left">hi</div>
-    <div class="intro-right">hi</div>
+<div class="introduction" id="introduction">
+    <div class="intro">
+        <h1>We are ready to help you become a Sensei</h1>
+        <h2>Become a member of MySensei society: Get the most exerienced tutors, learn new things and share them with others! With easy-to-use patform where you can always discover new things</h2>
+    </div>
+    <div class="intro-left">
+        <div class="index-box">
+            <img src="~/img/icons/loc.png" />
+            <h2>1. Choose the city</h2>
+            <p>Select the city where you want to look for lessons</p>
+        </div>
+        <div class="index-box">
+            <img src="~/img/icons/window.png" />
+            <h2>2. Find the teacher</h2>
+            <p>Once you select the city, the list of teacher will pop out. <br /> Simple! Right?</p>
+        </div>
+        <div class="index-box">
+            <img src="~/img/icons/wallet.png" />
+            <h2>3. Book the service</h2>
+            <p>Select the right lesson and book straight through the website. And now you're ready for your first lesson!</p>
+        </div>
+            </div>
+    <div class="intro-right">
+        <img src="~/img/icons/videoplayer.png" />
+    </div>
 </div>
 <div class="teacher" id="teacher">
-    <h2>Want to become a teacher of MySensei, and share you knowledge with others? Feel free to join our community</h2>
+    <h2><b>Want to become a teacher of MySensei, and share you knowledge with others? Feel free to join our community</b></h2>
+    <p>From sports coach to music teacher, teach others with skills where you good at! Meet different people, have fun and earn some extra money!</p>
+    <h1>MySensei teacher benefits</h1>
+    <ul>
+        <li>You can meet interesting people</li>
+        <li>You can earn money while havin fun</li>
+        <li>Improve your skills in the same time</li>
+        <li>Just be cool..! </li>
+    </ul>
+    <h2>@Html.ActionLink("Become a teacher", "Register", new { role = "teacher" }, new { @class = "button-link" })</h2>
+
 </div>
 <footer>
-    <h1>MySensei</h1>
-    <h2>We care what do you think!</h2>
-
+    <div class="aboutus">
+        <img src="~/img/logo_i_vector_sort.png" />
+        <h2>We care what do you think!</h2>
+    </div>
     <section class="widget links">
-        <h3>Contact Us</h3>
+        <h3>Company</h3>
         <ul>
-            <li><a href="#"><span class="label">Twitter</span></a></li>
-            <li><a href="#"><span class="label">Facebook</span></a></li>
-            <li><a href="#"><span class="label">Instagram</span></a></li>
-            <li><a href="#"><span class="label">Dribbble</span></a></li>
-            <li><a href="#"><span class="label">Pinterest</span></a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Contacts</a></li>
         </ul>
     </section>
 
@@ -100,13 +129,12 @@
             <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
             <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
         </ul>
         <p>
-            xy Skanderborgvej<br />
-            Viby J, 8260<br />
-            (800) 555-0000
+            MySensei Project<br />
+            Sønderhøj 30, DK-8260 Viby J<br />
+            Phone: 11 22 33 44
         </p>
     </section>
 

@@ -56,7 +56,7 @@ body :-ms-input-placeholder {
 }
 .container {
   max-width: 600px;
-  margin: 200px auto;
+  margin: 100px auto;
   padding: 50px 0;
   height: 450px;
   text-align: center;
@@ -137,7 +137,7 @@ form button {
 form button:hover {
   background-color: #f5f7f9;
 }
-.button-blue{
+/*.button-blue{
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	width: 150px;
 	border: #fbfbfb solid 4px;
@@ -152,6 +152,34 @@ form button:hover {
 	transition: all 0.3s;
     margin-top:-4px;
     font-weight:700;
+}*/
+.button-link {
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	width: 150px;
+	border: #fbfbfb solid 4px;
+	cursor:pointer;
+	background-color: #47b7b7;
+	color:white;
+	font-size:14px;
+	padding: 10px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+    margin-top:-4px;
+    font-weight:700;
+    text-decoration: none;
+}
+.button-link:hover {
+    background: #37a1a1;
+    border: solid 1px #2A4E77;
+    text-decoration: none;
+}
+.button-link:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: #2a8080;
+    border: solid 1px #203E5F;
 }
 #logo {
     float:left;
@@ -356,4 +384,20 @@ nav ul li a:hover {
     -webkit-transform: translateY(-700px) rotate(600deg);
             transform: translateY(-700px) rotate(600deg);
   }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    body {
+        width: 100%;
+    }
+    .container {
+        width: 100%;
+        margin: 10px auto;
+    }
+    fieldset {
+        border: 0px;
+    }
+    legend {
+        display: none;
+    }
 }
