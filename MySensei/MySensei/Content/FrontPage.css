@@ -1,4 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+@font-face {
+    font-family: 'Logo_Font_FingerpaintRegular';
+    src: url('../fonts/Logo_Font_FingerpaintRegular.ttf') format('truetype');
+}
 *,
 *:after,
 *:before {
@@ -58,7 +62,7 @@ body :-ms-input-placeholder {
   background-image: url('../img/banner.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Finger Paint', cursive;
+  font-family: 'Logo_Font_FingerpaintRegular', cursive;
   text-align:center;
   padding-top: 20px;
 }
@@ -285,7 +289,7 @@ body :-ms-input-placeholder {
     color: #fff;
     font-size: 36px;
     text-decoration: none;
-    font-family: 'Finger Paint', cursive; 
+    font-family: 'Logo_Font_FingerpaintRegular', cursive; 
 }
 .category-text {
     width:100%;

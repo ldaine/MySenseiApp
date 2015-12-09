@@ -206,6 +206,7 @@
     <Content Include="Areas\Students\Views\Lessons\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\ResetPassword.cshtml" />
     <Content Include="Areas\Admin\Views\Home\CleanTagTable.cshtml" />
+    <Content Include="fonts\Logo_Font_FingerpaintRegular.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\ableskiver.jpg" />

@@ -1,5 +1,8 @@
 ﻿@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-
+@font-face {
+    font-family: 'Logo_Font_FingerpaintRegular';
+    src: url('../fonts/Logo_Font_FingerpaintRegular.ttf') format('truetype');
+}
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
@@ -238,7 +241,7 @@ body :-ms-input-placeholder {
     color: #fff;
     font-size: 36px;
     text-decoration: none;
-    font-family: 'Finger Paint', cursive; 
+    font-family: 'Logo_Font_FingerpaintRegular', cursive; 
 }
 .category-text {
     width:100%;
