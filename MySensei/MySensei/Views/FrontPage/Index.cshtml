@@ -4,16 +4,7 @@
 }
 @{ ViewBag.Title = "MySensei | Learn what you want to!";}
 
-<nav class="nav">
-    <div id="logo"><img src=" ~/img/logo_i_vector_sort.png" alt="MySensei" /></div>
-  <ul class="nav-list">
-    <li class="nav-item">s</li>
-    <li class="nav-item"><a href="#">Subjects</a></li>
-    <li class="nav-item"><a href="#">How it works</a></li>
-    <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
-  </ul>
-    @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
-</nav>
+@Html.Partial("~/Views/Shared/_FrontPageNav.cshtml");
 
 <div class="wrapper">
     <h1>Learn what you want to!</h1>
@@ -79,13 +70,13 @@
         <h2>@Html.ActionLink("All Lessons", "Lessons", null,  new { @class = "button-link" })</h2>
     </div>
 </div>
-<div class="introduction" style="margin-top:15%">
+<div class="introduction" id="introduction" style="margin-top:15%">
     <h1>We are ready to help you become a Sensei</h1>
     <h2>Become a member of MySensei society: Get the most exerienced tutors, learn new things and share them with others.</h2>
     <div class="intro-left">hi</div>
     <div class="intro-right">hi</div>
 </div>
-<div class="teacher">
+<div class="teacher" id="teacher">
     <h2>Want to become a teacher of MySensei, and share you knowledge with others? Feel free to join our community</h2>
 </div>
 <footer>

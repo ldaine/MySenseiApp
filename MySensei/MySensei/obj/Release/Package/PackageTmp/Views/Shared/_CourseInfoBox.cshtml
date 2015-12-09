@@ -1,7 +1,5 @@
 ﻿@model MySensei.Models.AppCourse
 
-
-
 <div class="courses">
 
     @if (Model.AppUser.Avatar != null)
@@ -19,7 +17,7 @@
         <p>Location: @Model.Location</p>
         <p>Category: @Model.AppCategory.Category</p>
         <p>Maximum attendance: @Model.MaxAttendance</p>
-        @Html.ActionLink("Read More", "Details", new { id = Model.ID })
+        @Html.ActionLink("Read More", "Details", "Course", new { id = Model.ID }, null) 
     </div>
     <div class="price">
         <p>Pricing: @Model.Price kr/h</p>
@@ -27,7 +25,11 @@
         <div class="rating">
             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
         </div>
-        <h2>@Html.ActionLink("Sign up", "Lessons", null, new { @class = "button-link" })</h2>
+        @if (User.IsInRole("Student") || User.IsInRole("Teacher"))
+        {
+            <h2>@Html.ActionLink("Sign up", "SignUpForCourse", "Course", new {id = Model.ID}, new { @class = "button-link" })</h2>
+        }
+
         @*@if (obj.CourseImage != null)
             {
                 <li><img src="@obj.CourseImage" width="150" height="150" /></li>

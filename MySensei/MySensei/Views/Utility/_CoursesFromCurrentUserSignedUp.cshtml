@@ -1,40 +1,45 @@
 ﻿@model IEnumerable<MySensei.Models.AppCourse>
 
 <div class="courses-cont">
-
-    @foreach (var Model in Model)
-    {
-        <div class="courses">
-            @if (Model.AppUser.Avatar != null)
+       @if(Model.Count() == 0)
+       {
+           <i>You are currently not signed up for any lesson </i>
+       } else
+       {
+            foreach (var Model in Model)
             {
-                <img src="@Model.AppUser.Avatar" />
-            }
-            else
-            {
-                <div class="circular"> </div>
-            }
-            <div class="description">
-                <h2><b>@Model.Headline</b></h2>
-                <p style="color: #47b7b7"> @Model.AppUser.FullName</p>
-                <p>Description: @Model.Description</p>
-                <p>Location: @Model.Location</p>
-                <p>Category: @Model.AppCategory.Category</p>
-                <p>Maximum attendance: @Model.MaxAttendance</p>
-                @Html.ActionLink("Read More", "Details", "Course", new { area = "", id = Model.ID }, null)
-            </div>
-            <div class="price">
-                <p>Pricing: @Model.Price kr/h</p>
-                Rating:
-                <div class="rating">
-                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                </div>
-                @*@if (obj.CourseImage != null)
+                <div class="courses">
+                    @if (Model.AppUser.Avatar != null)
                     {
-                        <li><img src="@obj.CourseImage" width="150" height="150" /></li>
-                    }*@
-            </div>
-        </div>
-    }
+                        <img src="@Model.AppUser.Avatar" />
+                    }
+                    else
+                    {
+                        <div class="circular"> </div>
+                    }
+                    <div class="description">
+                        <h2><b>@Model.Headline</b></h2>
+                        <p style="color: #47b7b7"> @Model.AppUser.FullName</p>
+                        <p>Description: @Model.Description</p>
+                        <p>Location: @Model.Location</p>
+                        <p>Category: @Model.AppCategory.Category</p>
+                        <p>Maximum attendance: @Model.MaxAttendance</p>
+                        @Html.ActionLink("Read More", "Details", "Course", new { area = "", id = Model.ID }, null)
+                    </div>
+                    <div class="price">
+                        <p>Pricing: @Model.Price kr/h</p>
+                        Rating:
+                        <div class="rating">
+                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                        </div>
+                        @*@if (obj.CourseImage != null)
+                            {
+                                <li><img src="@obj.CourseImage" width="150" height="150" /></li>
+                            }*@
+                    </div>
+                </div>
+            }
 
+       }
         
     </div>

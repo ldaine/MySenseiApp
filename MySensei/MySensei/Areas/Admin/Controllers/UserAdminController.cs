@@ -98,7 +98,7 @@ namespace MySensei.Areas.Admin.Controllers
         }
 
         // Edit
-        [Authorize(Roles = "Administrators, Teacher")]
+        [Authorize(Roles = "Administrators")]
         public async Task<ActionResult> Edit(string id)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
@@ -154,6 +154,7 @@ namespace MySensei.Areas.Admin.Controllers
         public async Task<ActionResult> Edit(UserEditModel model, string password)
         {
             AppUser user = await UserManager.FindByIdAsync(model.ID);
+            AppUser admin = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
                 user.FirstName = model.FirstName;
@@ -173,61 +174,33 @@ namespace MySensei.Areas.Admin.Controllers
                 user.Email = model.Email;
 
                 IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
+                bool validPassword = await UserManager.CheckPasswordAsync(admin, password);
                 if (!validEmail.Succeeded)
                 {
                     AddErrorsFromResult(validEmail);
                 }
 
-                IdentityResult validPass = null;
-                if (password != string.Empty)
-                {
-                    validPass = await UserManager.PasswordValidator.ValidateAsync(password);
-                    if (validPass.Succeeded)
-                    {
-                        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
-                    }
-                    else
-                    {
-                        AddErrorsFromResult(validPass);
-                    }
-                }
+                //IdentityResult validPass = null;
+                //if (password != string.Empty)
+                //{
+                //    validPass = await UserManager.PasswordValidator.ValidateAsync(password);
+                //    if (validPass.Succeeded)
+                //    {
+                //        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
+                //    }
+                //    else
+                //    {
+                //        AddErrorsFromResult(validPass);
+                //    }
+                //}
 
-                if ((validEmail.Succeeded && validPass == null) || (validEmail.Succeeded && password != string.Empty && validPass.Succeeded))
+                //if ((validEmail.Succeeded && validPass == null) || (validEmail.Succeeded && password != string.Empty && validPass.Succeeded))
+
+                if (validEmail.Succeeded && validPassword)
                 {
                     IdentityResult result = await UserManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-
-                        ////looping through existing role
-                        //foreach (IdentityUserRole role in user.Roles)
-                        //{
-                        //    var name = db.Roles.Find(role.RoleId).Name;
-                        //    if (model.Roles.Contains(name))
-                        //    {
-                        //        model.Roles.Remove(name);
-                        //    }
-                        //    else
-                        //    {
-                        //        result = await UserManager.RemoveFromRoleAsync(user.Id, name);
-                        //        if (!result.Succeeded)
-                        //        {
-                        //            return View("Error", result.Errors);
-                        //        }
-                        //    }
-                        //}
-
-                        //foreach (string role in model.Roles)
-                        //{
-                        //    var roleName = db.Roles.Find(role).Name;
-                        //    var addedToRole = await UserManager.AddToRoleAsync(user.Id, roleName);
-
-                        //    result = await UserManager.AddToRoleAsync(user.Id, roleName);
-                        //    if (!result.Succeeded)
-                        //    {
-                        //        return View("Error", result.Errors);
-                        //    }
-                        //}
-
                         return RedirectToAction("Index");
                     }
                     else
@@ -237,12 +210,10 @@ namespace MySensei.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "User Not Found");
+                    ModelState.AddModelError("", "Please Confirm that the password is correct.");
                 }
             }
-            //ViewBag.Roles = new MultiSelectList(db.Roles, "Name", "Name");
-
-            return View(user);
+            return View(model);
         }
         // Delete
         [Authorize(Roles = "Administrators, Teacher")]
@@ -267,6 +238,50 @@ namespace MySensei.Areas.Admin.Controllers
                 return View("Error", new string[] { "User Not Found" });
             }
         }
+
+        [Authorize(Roles = "Administrators")]
+        public async Task<ActionResult> ResetPassword(string id)
+        {
+            var adminId = User.Identity.GetUserId();
+            AppUser user = await UserManager.FindByIdAsync(id);
+            var NewPassword = "MySensei@1234";
+            if (user != null)
+            {
+                IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
+                if (!validEmail.Succeeded)
+                {
+                    AddErrorsFromResult(validEmail);
+                }
+
+                IdentityResult validPass = null;
+
+                validPass = await UserManager.PasswordValidator.ValidateAsync(NewPassword);
+
+                if (validPass.Succeeded)
+                {
+                    IdentityResult result = await UserManager.RemovePasswordAsync(id);
+                    if (result.Succeeded)
+                    {
+                        IdentityResult newPswResult = await UserManager.AddPasswordAsync(id, NewPassword);
+                        if (newPswResult.Succeeded)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            AddErrorsFromResult(result);
+                        }
+                    }
+                    else
+                    {
+                        AddErrorsFromResult(result);
+                    }
+                }
+
+            }
+            return View();
+        }
+
 
         private void AddErrorsFromResult(IdentityResult result)
         {

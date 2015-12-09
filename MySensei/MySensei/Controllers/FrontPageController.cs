@@ -46,13 +46,14 @@ namespace MySensei.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Categ = from c in db.Courses where c.AppCategoryID == ids select c;
+            var courses = from c in db.Courses where c.AppCategoryID == ids select c;
+            //ViewBag.Categ = from c in db.Courses where c.AppCategoryID == ids select c;
             ViewBag.CategName = db.AppCategorys.Find(ids);
-            if (ViewBag.Categ == null)
+            if (courses == null)
             {
                 return HttpNotFound();
             }
-            return View(ViewBag.Categ);
+            return View(courses);
 
         }
 

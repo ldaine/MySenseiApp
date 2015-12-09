@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="MySenseiDb-Web.config Connection String" description="MySenseiDb Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MySenseiDb.mdf;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;MultipleActiveResultSets=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\_myFILES\\Education\\BAAA\\Cross-Disciplinary\\MySenseiApp\\MySensei\\MySensei\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MySenseiDb']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="D:\\_myFILES\\EDUCATION\\BAAA\\Cross-Disciplinary\\MySenseiApp\\MySensei\\MySensei\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MySenseiDb']/@connectionString" />
   </parameter>
 </parameters>

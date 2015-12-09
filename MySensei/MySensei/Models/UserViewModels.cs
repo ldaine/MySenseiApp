@@ -5,6 +5,22 @@ using System.ComponentModel.DataAnnotations;
 namespace MySensei.Models
 {
     // Users
+    public class ChangePassword
+    {
+        [Required(ErrorMessage = "Current Password is required")]
+        [DataType(DataType.Password)]
+        public string CurrentPassword { get; set; }
+
+        [Required(ErrorMessage = "New Password is required")]
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [DataType(DataType.Password)]
+        [Compare("NewPassword")]
+        public string ConfirmPassword { get; set; }
+    }
+
     public class CreateModel
     {
         public string Role { get; set; }
@@ -14,7 +30,8 @@ namespace MySensei.Models
         public string UserName { get; set; }
         [Required]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public string Phone { get; set; }
 
@@ -37,9 +54,7 @@ namespace MySensei.Models
         public string ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [Required]
         public string UserName { get; set; }
-        [Required]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }

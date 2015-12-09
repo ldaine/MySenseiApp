@@ -1,0 +1,34 @@
+﻿
+<nav class="nav">
+    <div id='logo'>
+        <a href='@Url.Action("Index", "FrontPage", new { area = "" })'>
+            <img src='@Url.Content("~/img/logo_i_vector_sort.png")' alt='MySensei' />
+        </a>
+    </div>
+    
+
+    <ul class="nav-list">
+        <li class="nav-item">s</li>
+        <li class="nav-item"><a href="/#introduction">Subjects</a></li>
+        <li class="nav-item"><a href="/#teacher">How it works</a></li>
+        @if (User.IsInRole("Administrators"))
+        {
+            <li class="nav-item login-right">@Html.ActionLink("Logged in as " + User.Identity.Name, "Index", "Home", new { area = "Admin" }, new { })</li>
+        }
+        else if (User.IsInRole("Student"))
+        {
+            <li class="nav-item login-right">@Html.ActionLink("Logged in as " + User.Identity.Name, "Index", "Home", new { area = "Students" }, new { })</li>
+        }
+        else if (User.IsInRole("Teacher"))
+        {
+            <li class="nav-item login-right">@Html.ActionLink("Logged in as " + User.Identity.Name, "Index", "Home", new { area = "Teachers" }, new { })</li>
+        }
+        else
+        {
+            <li class="nav-item login-right">@Html.ActionLink("Log In", "Login", "Account")</li>
+        }
+
+    </ul>
+
+    @*<div id="login">@Html.ActionLink("Log In", "Login", "Account")</div>*@
+</nav>

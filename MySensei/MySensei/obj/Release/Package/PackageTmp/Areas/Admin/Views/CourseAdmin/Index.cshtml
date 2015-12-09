@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.AppCourseStatus.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AppUser.FirstName)
+            @Html.DisplayNameFor(model => model.AppUser.FullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Course)
@@ -26,27 +26,14 @@
         <th>
             @Html.DisplayNameFor(model => model.Headline)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseImage)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaxAttendance)
-        </th>
+
         <th></th>
     </tr>
 
@@ -59,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.AppCourseStatus.Status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AppUser.FirstName)
+            @Html.DisplayFor(modelItem => item.AppUser.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Course)
@@ -68,30 +55,15 @@
             @Html.DisplayFor(modelItem => item.Headline)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseImage)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.CreatedAt)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxAttendance)
-        </td>
-        <td>
+                <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-primary btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-danger btn-xs" })
         </td>
     </tr>
 }

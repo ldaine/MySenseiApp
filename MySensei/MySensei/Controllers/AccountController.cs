@@ -11,6 +11,7 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Collections;
+using System;
 
 namespace MySensei.Controllers
 {
@@ -142,9 +143,9 @@ namespace MySensei.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.Email,
-                    Email = model.Email 
-                    
-                    
+                    Email = model.Email, 
+                    Country= "Danmark", 
+                    CreatedAt = DateTime.Now
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -176,7 +177,9 @@ namespace MySensei.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.Email,
-                    Email = model.Email, 
+                    Email = model.Email,
+                    Country = "Danmark",
+                    CreatedAt = DateTime.Now
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

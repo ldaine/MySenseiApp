@@ -14,15 +14,17 @@ namespace MySensei.Controllers
     public class UserController : Controller
     {
         // GET: Students/User
+
+        [Authorize(Roles = "Administrators,Teacher, Student")]
         public ActionResult Index()
         {
-
             var UserId = User.Identity.GetUserId();
             AppUser user = UserManager.FindById(UserId);
             return View(user);
         }
 
         // Edit
+        [Authorize(Roles = "Administrators,Teacher, Student")]
         public async Task<ActionResult> Edit()
         {
             var UserId = User.Identity.GetUserId();
@@ -65,6 +67,7 @@ namespace MySensei.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrators,Teacher, Student")]
         public async Task<ActionResult> Edit(UserEditModel model, string password)
         {
             AppUser user = await UserManager.FindByIdAsync(model.ID);
@@ -72,8 +75,6 @@ namespace MySensei.Controllers
             {
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
-                user.UserName = model.UserName;
-
                 user.Address = model.Address;
                 user.Zip = model.Zip;
                 user.City = model.City.ToString();
@@ -84,30 +85,33 @@ namespace MySensei.Controllers
                 user.Birthday = model.Birthday;
                 user.PrimaryLanguage = model.PrimaryLanguage.ToString();
 
-                user.Email = model.Email;
+                
 
                 IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
+                bool validPassword = await UserManager.CheckPasswordAsync(user, password);
                 if (!validEmail.Succeeded)
                 {
                     AddErrorsFromResult(validEmail);
                 }
 
-                IdentityResult validPass = null;
-                if (password != string.Empty)
-                {
-                    validPass = await UserManager.PasswordValidator.ValidateAsync(password);
-                    if (validPass.Succeeded)
-                    {
-                        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
-                    }
-                    else
-                    {
-                        AddErrorsFromResult(validPass);
-                    }
-                }
+                //IdentityResult validPass = null;
+                //if (password != string.Empty)
+                //{
+                //    validPass = await UserManager.PasswordValidator.ValidateAsync(password);
+                //    if (validPass.Succeeded)
+                //    {
+                //        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
+                //    }
+                //    else
+                //    {
+                //        AddErrorsFromResult(validPass);
+                //    }
+                //}
 
-                if ((validEmail.Succeeded && validPass == null) || (validEmail.Succeeded && password != string.Empty && validPass.Succeeded))
-                {
+                //if ((validEmail.Succeeded && validPass == null) || (validEmail.Succeeded && password != string.Empty && validPass.Succeeded))
+
+                if (validEmail.Succeeded && validPassword)
+                    {
                     IdentityResult result = await UserManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
@@ -120,11 +124,71 @@ namespace MySensei.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "User Not Found");
+                    ModelState.AddModelError("", "Please Confirm that the password is correct.");
                 }
             }
             return View(model);
         }
+
+
+        // Edit
+        [Authorize(Roles = "Administrators,Teacher, Student")]
+        public async Task<ActionResult> ChangePassword()
+        {
+            var UserId = User.Identity.GetUserId();
+            AppUser user = await UserManager.FindByIdAsync(UserId);
+            if (user != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrators,Teacher, Student")]
+        public async Task<ActionResult> ChangePassword(ChangePassword model)
+        {
+            var UserId = User.Identity.GetUserId();
+            AppUser user = await UserManager.FindByIdAsync(UserId);
+            if (user != null)
+            {
+                IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
+                if (!validEmail.Succeeded)
+                {
+                    AddErrorsFromResult(validEmail);
+                }
+
+                IdentityResult validPass = null;
+                if ((model.NewPassword != string.Empty) && (model.NewPassword == model.ConfirmPassword))
+                {
+                    validPass = await UserManager.PasswordValidator.ValidateAsync(model.NewPassword);
+
+                    if (validPass.Succeeded)
+                    {
+                        IdentityResult result = await UserManager.ChangePasswordAsync(user.Id, model.CurrentPassword, model.NewPassword);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            AddErrorsFromResult(result);
+                        }
+                    }
+                    else
+                    {
+                        AddErrorsFromResult(validPass);
+                    }
+                }
+
+            }
+            return View(model);
+        }
+
+
 
 
         //Helpers

@@ -1,25 +1,53 @@
 ﻿@model IEnumerable<MySensei.Models.AppCourse>
 
-@foreach (var obj in Model)
-{
-    <div style="width: 300px; height: 275px; display: inline-block; border: 1px solid black; padding: 5px; margin: 5px;">
+<div class="courses-cont">
+    @if (Model.Count() == 0)
+    {
+        <i>You currentlly don't have any lesson to teach. <u>@Html.ActionLink("Create New Lesson", "Create", "Course", new { area = "" })</u></i>
+    }
+    else
+    {
+        foreach (var Model in Model)
+        {
+            <div class="courses">
+                @if (Model.AppUser.Avatar != null)
+                    {
+                    <img src="@Model.AppUser.Avatar" />
+                }
+                else
+                {
+                    <div class="circular"> </div>
+                }
+                <div class="description">
+                    <h2><b>@Model.Headline</b></h2>
+                    <p style="color: #47b7b7"> @Model.AppUser.FullName</p>
+                    <p>Description: @Model.Description</p>
+                    <p>Location: @Model.Location</p>
+                    <p>Category: @Model.AppCategory.Category</p>
+                    <p>Maximum attendance: @Model.MaxAttendance</p>
+                    @Html.ActionLink("Read More ", "Details", "Course", new { area = "", id = Model.ID }, null)
+                    @if (User.IsInRole("Teacher"))
+                    {
+                            @Html.ActionLink("| Edit ", "Edit", "Course", new { area = "", id = Model.ID }, null)
+                            @Html.ActionLink("| Delete", "Delete", "Course", new { area = "", id = Model.ID }, null)
+                    }
+                </div>
+                <div class="price">
+                    <p>Pricing: @Model.Price kr/h</p>
+                    Rating:
+                    <div class="rating">
+                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                    </div>
+                    @*@if (obj.CourseImage != null)
+                    {
+                        <li><img src="@obj.CourseImage" width="150" height="150" /></li>
+                    }*@
+                </div>
 
-        <h3>@obj.Headline</h3>
-        <ul>
-            <li>Description: @obj.Description</li>
-            <li>Location: @obj.Location</li>
-            <li>Price: @obj.Price dkk</li>
-            <li>Maximum attendance: @obj.MaxAttendance</li>
-        </ul>
-        
-            @if (User.IsInRole("Teacher"))
-            {
-                <p>
-                    @Html.ActionLink("Edit", "Edit", "Course", new { area = "", id = obj.ID }, null) | 
-                    @Html.ActionLink("Details", "Details", "Course", new { area = "", id = obj.ID }, null) | 
-                    @Html.ActionLink("Delete", "Delete", "Course", new { area = "", id = obj.ID }, null)
-                </p>
-            }
+                
+            </div>
+        }
+    }
 </div>
-}
+
 

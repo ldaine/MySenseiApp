@@ -10,6 +10,15 @@
     <h4>AppCourse</h4>
     <hr />
     @Html.Partial("~/Views/Shared/_CourseDetails.cshtml", Model)
+    <div class="row">
 
+        @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })
+
+        @if (User.IsInRole("Student") || User.IsInRole("Teacher"))
+        {
+            @Html.ActionLink("Sign up", "SignUpForCourse", "Course", new { id = Model.ID }, new { @class = "btn btn-primary" })
+        }
+
+    </div>
 
 </div>

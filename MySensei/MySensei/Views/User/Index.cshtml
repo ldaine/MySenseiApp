@@ -1,5 +1,8 @@
 ﻿@model MySensei.Models.AppUser
 <h2>Profile Details</h2>
-@Html.Partial("~/Views/Shared/_ViewUserDetails.cshtml", Model)
+<div class="row">
+    @Html.Partial("~/Views/Shared/_ViewUserDetails.cshtml", Model)
+</div>
 
 @Html.ActionLink("Edit", "Edit", "User", null, new { @class = "btn btn-primary btn-sm", area = "" })
+@Html.ActionLink("Change Password", "ChangePassword", "User", null, new { @class = "btn btn-primary btn-sm", area = "" })

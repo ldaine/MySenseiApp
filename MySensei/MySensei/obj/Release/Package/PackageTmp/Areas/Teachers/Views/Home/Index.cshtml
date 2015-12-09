@@ -3,15 +3,13 @@
     ViewBag.Title = "Index";
 }
 
-<h3>Welcome, @User.Identity.Name !</h3>
-
-<h1>You are signed up in</h1>
+<div class="title"><h1>Lessons Taken</h1></div>
 @Html.Action("_CoursesFromCurrentUserSignedUp", "Utility", new { area = "" });
 
-<h1>You teach</h1>
+<div class="title"><h1>Lessons Created</h1></div>
 @Html.Action("_CoursesTeachedByCurrentUser", "Utility", new { area = "" });
 
-
+<div class="title"><h1>All Lessons</h1></div>
 @Html.Action("_AllCoursesSearchBox", "Utility", new { area = "" });
 
 

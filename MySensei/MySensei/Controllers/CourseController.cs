@@ -150,7 +150,7 @@ namespace MySensei.Controllers
                     return RedirectToAction("Index");
                 } else if (User.IsInRole("Teacher"))
                 {
-                    return RedirectToAction("CourseTeacher", "Home", new { area = "Teachers" });
+                    return RedirectToAction("Index", "Course", new { area = "Teachers" });
                 }
                     
             }
@@ -307,7 +307,7 @@ namespace MySensei.Controllers
             AppCourse appCourse = db.Courses.Find(id);
             db.Courses.Remove(appCourse);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DeleteConfirmed");
         }
 
         private void AddErrorsFromResult(IdentityResult result)

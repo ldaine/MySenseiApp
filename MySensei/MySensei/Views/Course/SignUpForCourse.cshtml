@@ -1,8 +1,13 @@
-﻿
+﻿@model MySensei.Models.AppCourse
 @{
     ViewBag.Title = "SignUpForCourse";
 }
 
-<h2>SignUpForCourse</h2>
-<p>You are signed up now </p>
+<h2>Sign Up Confirmation</h2>
+<p>You are now signed up for course: </p>
+
+@Html.Partial("~/Views/Shared/_CourseDetails.cshtml", Model)
+
+
+
 

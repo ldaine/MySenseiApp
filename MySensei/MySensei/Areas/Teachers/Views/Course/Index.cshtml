@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="title"><h1>Lessons Created</h1></div>
+@Html.ActionLink("New Lesson", "Create", "Course", new {area = "" }, new {@class = "btn btn-primary btn-sm" })
+
+@Html.Action("_CoursesTeachedByCurrentUser", "Utility", new { area = "" })
+

@@ -135,7 +135,7 @@ namespace MySensei.Areas.Admin.Controllers
             ViewBag.TagID = new MultiSelectList(db.AppTags, "ID", "Tag");
             ViewBag.AppCategoryID = new SelectList(db.AppCategorys, "ID", "Category", appCourse.AppCategoryID);
             ViewBag.AppCourseStatusID = new SelectList(db.AppCourseStatuss, "ID", "Status", appCourse.AppCourseStatusID);
-            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FirstName", appCourse.AppUserID);
+            ViewBag.AppUserID = new SelectList(db.Users, "Id", "FullName", appCourse.AppUserID);
             return View(model);
         }
 

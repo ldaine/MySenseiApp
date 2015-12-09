@@ -198,16 +198,14 @@
     <Content Include="Areas\Students\Views\web.config" />
     <Content Include="Areas\Students\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Students\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Students\Views\Home\Categories.cshtml" />
     <Content Include="Areas\Teachers\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Teachers\Views\Home\Categories.cshtml" />
-    <Content Include="App_Code\Helpers.cshtml" />
-    <Content Include="Areas\Students\Views\User\Index.cshtml" />
-    <Content Include="Areas\Students\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Teachers\Views\Home\CourseTeacher.cshtml" />
-    <Content Include="Areas\Teachers\Views\Home\CourseStudent.cshtml" />
     <Content Include="Areas\Admin\Views\RoleAdmin\EditUsersInRoles.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Teachers\Views\Course\Index.cshtml" />
+    <Content Include="Areas\Teachers\Views\Lessons\Index.cshtml" />
+    <Content Include="Areas\Students\Views\Lessons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\CleanTagTable.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="img\ableskiver.jpg" />
@@ -254,9 +252,11 @@
     <Compile Include="Areas\Admin\Controllers\SignUpsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagAdminController.cs" />
     <Compile Include="Areas\Students\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Students\Controllers\UserController.cs" />
+    <Compile Include="Areas\Students\Controllers\LessonsController.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
+    <Compile Include="Areas\Teachers\Controllers\CourseController.cs" />
     <Compile Include="Areas\Teachers\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Teachers\Controllers\LessonsController.cs" />
     <Compile Include="Areas\Teachers\TeachersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
@@ -325,6 +325,9 @@
     <Content Include="Views\Course\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\_FrontPageNav.cshtml" />
+    <Content Include="Views\Course\DeleteConfirmed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -339,7 +342,6 @@
     <Folder Include="Areas\Students\Views\Shared\" />
     <Folder Include="Areas\Teachers\Models\" />
     <Folder Include="Areas\Teachers\Views\Shared\" />
-    <Folder Include="Areas\Teachers\Views\User\" />
     <Folder Include="Content\css\" />
     <Folder Include="Content\sass\" />
   </ItemGroup>
